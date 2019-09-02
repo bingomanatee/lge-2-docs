@@ -1,0 +1,70 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3802911, 2019-09-02T00:24:48-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: LotaGrotesqueAlt3-BlackIt by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-black-italic/
+ * 
+ * Webfont: LotaGrotesqueAlt3-LightIt by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-light-italic/
+ * 
+ * Webfont: LotaGrotesqueAlt3-Black by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-black/
+ * 
+ * Webfont: LotaGrotesqueAlt3-Bold by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-bold/
+ * 
+ * Webfont: LotaGrotesqueAlt3-BoldIt by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-bold-italic/
+ * 
+ * Webfont: LotaGrotesqueAlt3-Light by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-light/
+ * 
+ * Webfont: LotaGrotesqueAlt3-Regular by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-regular/
+ * 
+ * Webfont: LotaGrotesqueAlt3-RegularIt by Los Andes
+ * URL: https://www.myfonts.com/fonts/los-andes/lota-grotesque/alt-3-regular-italic/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3802911
+ * Licensed pageviews: 10,000
+ * Webfonts copyright: Copyright &#x00A9; 2017 by Daniel Hernandez. All rights reserved.
+ * 
+ * © 2019 MyFonts Inc
+*/
+
+
+/* @import must be at top of file, otherwise CSS will not work */
+@import url("//hello.myfonts.net/count/3a071f");
+
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-BlackIt';src: url('webfonts/3A071F_0_0.eot');src: url('webfonts/3A071F_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_0_0.woff2') format('woff2'),url('webfonts/3A071F_0_0.woff') format('woff'),url('webfonts/3A071F_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-LightIt';src: url('webfonts/3A071F_1_0.eot');src: url('webfonts/3A071F_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_1_0.woff2') format('woff2'),url('webfonts/3A071F_1_0.woff') format('woff'),url('webfonts/3A071F_1_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-Black';src: url('webfonts/3A071F_2_0.eot');src: url('webfonts/3A071F_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_2_0.woff2') format('woff2'),url('webfonts/3A071F_2_0.woff') format('woff'),url('webfonts/3A071F_2_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-Bold';src: url('webfonts/3A071F_3_0.eot');src: url('webfonts/3A071F_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_3_0.woff2') format('woff2'),url('webfonts/3A071F_3_0.woff') format('woff'),url('webfonts/3A071F_3_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-BoldIt';src: url('webfonts/3A071F_4_0.eot');src: url('webfonts/3A071F_4_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_4_0.woff2') format('woff2'),url('webfonts/3A071F_4_0.woff') format('woff'),url('webfonts/3A071F_4_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-Light';src: url('webfonts/3A071F_5_0.eot');src: url('webfonts/3A071F_5_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_5_0.woff2') format('woff2'),url('webfonts/3A071F_5_0.woff') format('woff'),url('webfonts/3A071F_5_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-Regular';src: url('webfonts/3A071F_6_0.eot');src: url('webfonts/3A071F_6_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_6_0.woff2') format('woff2'),url('webfonts/3A071F_6_0.woff') format('woff'),url('webfonts/3A071F_6_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'LotaGrotesqueAlt3-RegularIt';src: url('webfonts/3A071F_7_0.eot');src: url('webfonts/3A071F_7_0.eot?#iefix') format('embedded-opentype'),url('webfonts/3A071F_7_0.woff2') format('woff2'),url('webfonts/3A071F_7_0.woff') format('woff'),url('webfonts/3A071F_7_0.ttf') format('truetype');}
+ 
