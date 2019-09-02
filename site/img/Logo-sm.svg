@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="79px" viewBox="0 0 78 79" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Logo-sm</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="56.6751501%" y1="61.096147%" x2="31.9937284%" y2="26.1574182%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#6CB1DB" offset="43.5335726%"></stop>
+            <stop stop-color="#316C8F" offset="62.8510346%"></stop>
+            <stop stop-color="#2584BD" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Logo-sm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo">
+            <circle id="Oval-Copy" fill="#6CB1DB" cx="39" cy="39" r="39"></circle>
+            <circle id="Oval" fill="url(#linearGradient-1)" cx="39" cy="45" r="34"></circle>
+            <circle id="Oval" fill="#FFFFFF" cx="39" cy="45" r="28.5"></circle>
+        </g>
+    </g>
+</svg>

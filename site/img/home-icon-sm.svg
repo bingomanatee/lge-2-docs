@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="24px" viewBox="0 0 25 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>home-icon-sm</title>
+    <desc>Created with Sketch.</desc>
+    <g id="home-icon-sm" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="home-icon" transform="translate(1.000000, 1.000000)" stroke="#000000">
+            <g id="Group">
+                <g id="Regular" stroke-width="1.5">
+                    <path d="M14.0036954,19.3099244 C14.0036954,19.3099244 15.2524698,21.7831657 17.3535661,21.5968052 C21.6131264,21.2201192 21.3283362,15.7413198 22.8854626,13.806343 C20.2134963,12.5182244 17.0656226,12.5462338 14.4185876,13.8816802 C12.2170977,15.0870756 12.0552385,17.1231628 14.0036954,19.3099244 Z" id="Shape"></path>
+                    <path d="M17.0165302,16.797032 C17.0165302,16.797032 14.2505819,17.1281192 12.2806121,21.7831657" id="Shape"></path>
+                    <path d="M8.56502155,18.8103198 L4.72342672,18.8103198 C3.87476503,18.8103198 3.18678879,18.1446036 3.18678879,17.3234012 L3.18678879,9.88880814" id="Shape"></path>
+                    <polyline id="Shape" points="0.113512931 8.40188953 10.1016595 0.223837209 20.089806 8.40188953"></polyline>
+                    <path d="M15.4798922,0.967296512 L17.0165302,0.967296512 C17.8651919,0.967296512 18.5531681,1.63301265 18.5531681,2.45421512 L18.5531681,3.94113372" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

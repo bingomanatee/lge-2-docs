@@ -1,0 +1,15 @@
+{
+  "name": "lge",
+  "version": "1.0.0",
+  "description": "A documentation site about the Looking Glass Engine",
+  "main": "index.js",
+  "repository": "https://looking-glass-engine.firebaseapp.com",
+  "author": "David Edelhart",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "next": "^9.0.5",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
+  }
+}
