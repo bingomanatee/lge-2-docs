@@ -12,6 +12,8 @@ html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
   margin: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Sections
@@ -23,6 +25,9 @@ html {
 
 body {
   margin: 0;
+  font-family: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
+  overflow-y: scroll;
+  height: 100%;
 }
 
 /**

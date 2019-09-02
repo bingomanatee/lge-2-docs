@@ -1,27 +1,56 @@
-/*! HTML5 Boilerplate v7.2.0 | MIT License | https://html5boilerplate.com/ */
-/* main.css 2.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
-/*
- * What follows is the result of much research on cross-browser styling.
- * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
- * Kroc Camen, and the H5BP dev community and team.
- */
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+.small, .medium, .large {
+  display: none; }
+
+@media (min-width: 800px) and (max-width: 1199px) {
+  .medium {
+    display: block; } }
+@media (max-width: 799px) {
+  .small {
+    display: block; }
+
+  .not-small {
+    display: none; } }
+@media (min-width: 1200px) {
+  .large {
+    display: block; }
+
+  .not-large {
+    display: none; } }
 header {
-  display: grid; }
-  @media screen and (min-width: 900px) {
+  display: grid;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-repeat: no-repeat; }
+  @media (max-width: 1199px) {
     header {
+      background: -moz-linear-gradient(180deg, #6CB1DB 0, #6CB1DB 6px, white 24px, rgba(255, 255, 255, 0) 100%);
+      background: -webkit-linear-gradient(180deg, #6CB1DB 0, #6CB1DB 6px, white 24px, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(180deg, #6CB1DB 0, #6CB1DB 6px, white 24px, rgba(255, 255, 255, 0) 100%); } }
+  @media (min-width: 1200px) {
+    header {
+      background: -moz-linear-gradient(180deg, #6CB1DB 0, #6CB1DB 9px, white 36px, rgba(255, 255, 255, 0) 100%);
+      background: -webkit-linear-gradient(180deg, #6CB1DB 0, #6CB1DB 9px, white 36px, rgba(255, 255, 255, 0) 100%);
+      background: linear-gradient(180deg, #6CB1DB 0, #6CB1DB 9px, white 36px, rgba(255, 255, 255, 0) 100%);
       grid-template-rows: [top] 8px [menu-top] 60px [main-row] 112px [bottom];
       grid-template-columns: [left] 2rem [logo-col] 160px [main-column] auto [main-column-end] 2rem [right]; } }
-  @media screen and (min-width: 700px) and (max-width: 900px) {
+  @media (min-width: 800px) and (max-width: 1199px) {
     header {
       grid-template-rows: [top] 8px [menu-top] 40px [main-row] 112px [bottom];
       grid-template-columns: [left] 1rem [logo-col] 80px [main-column] auto [main-column-end] 1rem [right]; } }
-  @media screen and (max-width: 700px) {
+  @media (max-width: 799px) {
     header {
-      grid-template-rows: [top] 8px [menu-top] 40px [main-row] 112px [bottom];
+      grid-template-rows: [top] 8px [menu-top] 40px [main-row] 0 [bottom];
       grid-template-columns: [left] 1rem [logo-col] 1px [main-column] auto [main-column-end] 1rem [right]; } }
+
+main {
+  margin: 8px 2rem; }
+
+article {
+  max-width: 1200px; }
 
 #header-menu {
   grid-column-start: main-column;
@@ -32,17 +61,22 @@ header {
   flex-direction: row;
   justify-content: flex-start; }
   #header-menu span {
-    font-family: LotaGrotesqueAlt3-Regular;
+    font-family: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
     font-size: 1rem;
     padding: 0.5rem 1rem; }
     #header-menu span.active {
       background-color: rgba(255, 255, 255, 0.5); }
     #header-menu span:hover {
       color: #2772a0; }
-    @media (max-width: 900px) {
+    @media (max-width: 1199px) {
       #header-menu span {
         font-size: 0.8rem;
         padding: 0.25rem 0.5rem; } }
+    #header-menu span a {
+      color: inherit;
+      text-decoration: inherit;
+      border: none;
+      outline: none !important; }
 
 #header-title {
   grid-column-start: main-column;
@@ -53,62 +87,85 @@ header {
     font-family: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
     color: #6CB1DB;
     font-size: 1rem;
-    text-align: center;
     line-height: 1; }
-    @media screen and (max-width: 900px) {
+    @media (max-width: 1199px) {
       #header-title .lead-in {
         font-size: 0.8rem; } }
   #header-title .title {
     font-family: LotaGrotesqueAlt3-Light, "Helvetica Neue", sans-serif;
-    font-size: 3rem;
-    text-align: center;
+    font-size: 2rem;
     line-height: 1;
     text-transform: uppercase;
-    color: rgba(0, 0, 0, 0.3); }
-    @media screen and (max-width: 900px) {
+    color: #2772a0; }
+    @media (max-width: 1199px) {
       #header-title .title {
-        font-size: 2rem;
-        color: rgba(0, 0, 0, 0.4); } }
+        font-size: 2rem; } }
 
-.small, .medium, .large {
-  display: none; }
-
-@media screen and (min-width: 700px) and (max-width: 900px) {
-  .medium {
-    display: block; } }
-@media screen and (max-width: 700px) {
-  .small {
-    display: block; } }
-@media screen and (min-width: 900px) {
-  .large {
-    display: block; } }
 #logo {
   grid-column-start: logo-col;
   grid-column-end: main-column;
   grid-row-start: top;
   grid-row-end: bottom; }
-  @media (max-width 700px) {
+  @media (max-width: 800px) {
     #logo {
       display: none; } }
 
 html {
   color: black;
   font-size: 20px;
-  line-height: 1.4;
   background: white;
-  background-repeat: no-repeat;
   height: 100vh; }
-  @media screen and (max-width: 900px) {
-    html {
-      background: -moz-linear-gradient(180deg, #6cb1db 0, #6cb1db 6px, rgba(108, 177, 219, 0) 24px);
-      background: -webkit-linear-gradient(180deg, #6cb1db 0, #6cb1db 6px, rgba(108, 177, 219, 0) 24px);
-      background: linear-gradient(180deg, #6cb1db 0, #6cb1db 6px, rgba(108, 177, 219, 0) 24px); } }
-  @media screen and (min-width: 900px) {
-    html {
-      background: -moz-linear-gradient(180deg, #6cb1db 0, #6cb1db 9px, rgba(108, 177, 219, 0) 36px);
-      background: -webkit-linear-gradient(180deg, #6cb1db 0, #6cb1db 9px, rgba(108, 177, 219, 0) 36px);
-      background: linear-gradient(180deg, #6cb1db 0, #6cb1db 9px, rgba(108, 177, 219, 0) 36px); } }
 
+p {
+  margin: 0;
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-family: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
+  font-size: 1rem; }
+  @media screen and (max-width: 1200px) {
+    p {
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem; } }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: 130%;
+  font-size: 2.5rem;
+  margin-bottom: 1.25rem;
+  font-family: LotaGrotesqueAlt3-Black, "Helvetica Neue", sans-serif;
+  font-weight: 900;
+  text-align: center; }
+  @media (max-width: 1199px) {
+    h1, h2, h3, h4, h5, h6 {
+      font-size: 2rem;
+      margin-bottom: 1rem; } }
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.875rem; }
+  @media (max-width: 1199px) {
+    h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.7rem; } }
+
+h3, h4, h5, h6 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem; }
+  @media (max-width: 1199px) {
+    h3, h4, h5, h6 {
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem; } }
+
+/*! HTML5 Boilerplate v7.2.0 | MIT License | https://html5boilerplate.com/ */
+/* main.css 2.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
+/*
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -252,8 +309,6 @@ textarea {
    These examples override the primary ('mobile first') styles.
    Modify as content requires.
    ========================================================================== */
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */ }
 @media print, (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 1.25dppx), (min-resolution: 120dpi) {
   /* Style adjustments for high resolution devices */ }
 /* ==========================================================================

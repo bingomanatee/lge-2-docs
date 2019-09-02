@@ -1,2 +1,5 @@
 # Project exclude paths
 /node_modules/
+/.next/
+.DS_Store
+static/css/.sass-cache/52949fc28cee7b328315210b913da5e5427462f3/

@@ -1,0 +1,87 @@
+$headerHeight: 180px;
+$headerHeightMedium: 120px;
+
+$LOTA_REGULAR: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
+$LOTA_BLACK: LotaGrotesqueAlt3-Black, "Helvetica Neue", sans-serif;
+$LOTA_BOLD: LotaGrotesqueAlt3-Bold, "Helvetica Neue", sans-serif;
+$LOTA_LIGHT: LotaGrotesqueAlt3-Light, "Helvetica Neue", sans-serif;
+
+// general size
+$gutterWidth: 2rem;
+
+$BODY_FONT: $LOTA_REGULAR;
+$BODY_FONT_SIZE: 1rem;
+$mediumRatio: 0.8;
+$smallRatio: 0.666;
+
+$BODY_FONT_SIZE_MEDIUM: $BODY_FONT_SIZE * $mediumRatio;
+$HEADER_HEIGHT: 2.5rem;
+$HEADER_HEIGHT_MEDIUM: $HEADER_HEIGHT * $mediumRatio;
+$HEADER_FONT: $LOTA_BLACK;
+$HEADER_WEIGHT: 900;
+
+$HEADER_HEIGHT_2: ($HEADER_HEIGHT + $BODY_FONT_SIZE)/2;
+$HEADER_HEIGHT_MEDIUM_2: $HEADER_HEIGHT_2 * $mediumRatio;
+$HEADER_FONT_2: $LOTA_BOLD;
+$HEADER_WEIGHT_2: 700;
+
+$HEADER_HEIGHT_3: $BODY_FONT_SIZE;
+$HEADER_HEIGHT_MEDIUM_3: $BODY_FONT_SIZE_MEDIUM;
+$HEADER_FONT_3: $LOTA_BOLD;
+$HEADER_WEIGHT_3: 700;
+
+// for the background gradient
+$gradientStop1: 0;
+$stop1ratio: 0.05;
+$stop2ratio: 0.2;
+
+$gradientStop2: $headerHeight * $stop1ratio;
+$gradientStop3: $headerHeight * $stop2ratio;
+$gradientStop2med: $headerHeightMedium * $stop1ratio;
+$gradientStop3med: $headerHeightMedium * $stop2ratio;
+
+$gutterWidthSmall: 1rem;
+$logoWidth: 160px;
+$logoWidthSmall: 80px;
+$gutterHeight: 8px;
+$headerMenuHeight: 60px;
+$headerMenuHeightMedium: 40px;
+
+$headerMainHeight: $headerHeight - $headerMenuHeight - $gutterHeight;
+
+$BLUE: #6CB1DB;
+$DARK_BLUE: darken($BLUE, 25%);
+$BIG_TEXT_COLOR: $DARK_BLUE;
+
+$body: 1rem;
+$bodySmall: 0.8rem;
+
+$responsiveMedium: 1200px;
+$responsiveSmall: 800px;
+
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+// this is the default assumption for main.scss
+@mixin media-large {
+  @media (min-width: #{$responsiveMedium}) {
+    @content;
+  }
+}
+
+@mixin media-medium {
+  @media (min-width: #{$responsiveSmall}) and (max-width: #{$responsiveMedium - 1px}) {
+    @content;
+  }
+}
+@mixin media-medium-and-small {
+  @media (max-width: #{$responsiveMedium - 1px}) {
+    @content;
+  }
+}
+
+@mixin media-small {
+  @media (max-width: #{$responsiveSmall - 1px}) {
+    @content;
+  }
+}
