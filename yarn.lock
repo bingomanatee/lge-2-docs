@@ -960,6 +960,36 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
+"@wonderlandlabs/inspector@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@wonderlandlabs/inspector/-/inspector-1.0.4.tgz#6fdea4907be78a039c36d5486f2a9cfa0bd997d2"
+  integrity sha512-EuF+ZtfM4fcuGZoke8fulzBi1eCZBzxN258fnHkxnfOEuQQlfgdsF3UrfYYM7ectDjhcyWCymaUc/2moUYI8JQ==
+  dependencies:
+    bottlejs "^1.7.1"
+    is "^3.2.1"
+
+"@wonderlandlabs/looking-glass-engine@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@wonderlandlabs/looking-glass-engine/-/looking-glass-engine-2.0.1.tgz#e3c6f1db7c9319fa584926a205446db10f0e226c"
+  integrity sha512-tmj3iZlKQzTbynypkV8LtBI0tgd3Hcd0u5K+EXLNqWyZI10FhpGtOqgGbtlPFkq6v9AeWP/xF46mWG5aLl+4Rg==
+  dependencies:
+    "@wonderlandlabs/propper" "^2.0.4"
+    bottlejs "^1.7.2"
+    is "^3.3.0"
+    lodash "^4.17.15"
+    rxjs "^6.5.2"
+    uuid "^3.3.3"
+
+"@wonderlandlabs/propper@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@wonderlandlabs/propper/-/propper-2.0.4.tgz#c5cdf7febb02a78f39db4c9d3db8b1f38e9fa75d"
+  integrity sha512-tQdnk069suGP6IsUbwnbEX4TJ7PiMMbH5dx94h+z2o9aD2T5QoC72qx5o1IY4liMshRzQpa+xN/0fxmMCrObTQ==
+  dependencies:
+    "@wonderlandlabs/inspector" "^1.0.4"
+    is "^3.2.1"
+    lodash.compact "^3.0.1"
+    lodash.get "^4.4.2"
+
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@xtuc/ieee754/-/ieee754-1.2.0.tgz#eef014a3145ae477a1cbc00cd1e552336dceb790"
@@ -1284,6 +1314,11 @@ bn.js@^4.0.0, bn.js@^4.1.0, bn.js@^4.1.1, bn.js@^4.4.0:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   integrity sha512-ItfYfPLkWHUjckQCk8xC+LwxgK8NYcXywGigJgSwOP8Y2iyWT4f2vsZnoOXTTbo+o5yXmIUJ4gn5538SO5S3gA==
+
+bottlejs@^1.7.1, bottlejs@^1.7.2:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/bottlejs/-/bottlejs-1.7.2.tgz#a9a29c937cda3c4b4dcbcfc71c473c7f79108ca6"
+  integrity sha512-voMPQ+g8/4GBiDE5lp43fgfoBn7Q5fZI7k3ye8ErrPoHzuuRS0Gff9lZYeyalh86uz5P304iZ14wNAM+3TZguQ==
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -2617,6 +2652,11 @@ is-wsl@^1.1.0:
   resolved "https://registry.yarnpkg.com/is-wsl/-/is-wsl-1.1.0.tgz#1f16e4aa22b04d1336b66188a66af3c600c3a66d"
   integrity sha1-HxbkqiKwTRM2tmGIpmrzxgDDpm0=
 
+is@^3.2.1, is@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/is/-/is-3.3.0.tgz#61cff6dd3c4193db94a3d62582072b44e5645d79"
+  integrity sha512-nW24QBoPcFGGHJGUwnfpI7Yc5CdqWNdsyHQszVE/z2pKHXzh7FZ5GWhJqSyaQ9wMkQnsTx+kAI8bHlCX4tKdbg==
+
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
@@ -2761,6 +2801,16 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash.compact@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/lodash.compact/-/lodash.compact-3.0.1.tgz#540ce3837745975807471e16b4a2ba21e7256ca5"
+  integrity sha1-VAzjg3dFl1gHRx4WtKK6IeclbKU=
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
 
 lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.15, lodash@^4.17.4:
   version "4.17.15"
@@ -3866,6 +3916,13 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
+rxjs@^6.5.2:
+  version "6.5.2"
+  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.5.2.tgz#2e35ce815cd46d84d02a209fb4e5921e051dbec7"
+  integrity sha512-HUb7j3kvb7p7eCUHE3FqjoDsC1xfZQ4AHFWfTKSpZ+sAhhz5X1WX0ZuUqWbzB2QhSLp3DoLUG+hMdEDKqWo2Zg==
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
@@ -4530,7 +4587,7 @@ util@^0.11.0:
   dependencies:
     inherits "2.0.3"
 
-uuid@^3.3.2:
+uuid@^3.3.2, uuid@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==

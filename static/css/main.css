@@ -373,5 +373,19 @@ textarea {
   h2,
   h3 {
     page-break-after: avoid; } }
+/*  **********
+   example styling
+ */
+.form-row {
+  padding: 1rem;
+  max-width: 600px;
+  display: flex;
+  justify-content: space-between; }
+  .form-row label {
+    font-weight: bold; }
+
+.form-feedback {
+  padding: 1rem;
+  font-size: 0.8rem; }
 
 /*# sourceMappingURL=main.css.map */
