@@ -48,6 +48,9 @@ header {
 
 main {
   margin: 8px 2rem; }
+  @media (max-width: 799px) {
+    main {
+      margin: 4px, 1rem; } }
 
 article {
   max-width: 1200px; }
@@ -124,6 +127,14 @@ p {
   font-size: 1rem; }
   @media screen and (max-width: 1200px) {
     p {
+      font-size: 0.8rem;
+      margin-bottom: 0.4rem; } }
+
+li {
+  font-family: LotaGrotesqueAlt3-Regular, "Helvetica Neue", sans-serif;
+  font-size: 1rem; }
+  @media screen and (max-width: 1200px) {
+    li {
       font-size: 0.8rem;
       margin-bottom: 0.4rem; } }
 
@@ -386,6 +397,15 @@ textarea {
 
 .form-feedback {
   padding: 1rem;
+  font-size: 0.8rem; }
+
+code > pre {
+  padding: 1rem;
+  max-height: 30rem;
+  overflow-y: auto;
+  background-color: #b3e6d5;
+  background: linear-gradient(180deg, #a0e0ca 0%, #94dcc4 2rem, #b3e6d5 7rem, #d9f3ea 10rem);
+  background-repeat: no-repeat;
   font-size: 0.8rem; }
 
 /*# sourceMappingURL=main.css.map */

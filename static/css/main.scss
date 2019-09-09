@@ -68,6 +68,10 @@ header {
 
 main {
   margin: $gutterHeight $gutterWidth;
+
+  @include media-small {
+    margin: $gutterHeightSmall, $gutterWidthSmall;
+  }
 }
 
 article {
@@ -160,12 +164,11 @@ p {
   margin: 0;
   padding: 0;
   margin-bottom: $BODY_FONT_SIZE/2;
-  font-family: $LOTA_REGULAR;
-  font-size: $BODY_FONT_SIZE;
-  @media screen and (max-width: #{$responsiveMedium}) {
-    font-size: $BODY_FONT_SIZE_MEDIUM;
-    margin-bottom: $BODY_FONT_SIZE_MEDIUM/2;
-  }
+  @include textParams;
+}
+
+li {
+  @include textParams;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -470,5 +473,15 @@ textarea {
 
 .form-feedback {
   padding: 1rem;
+  font-size: 0.8rem;
+}
+
+code > pre {
+  padding: 1rem;
+  max-height: 30rem;
+  overflow-y: auto;
+  background-color: $CODE_BG_COLOR;
+  background: linear-gradient(180deg, darken($CODE_BG_COLOR, 5%) 0%, darken($CODE_BG_COLOR, 8%) 2rem, $CODE_BG_COLOR 7rem, lighten($CODE_BG_COLOR, 10%) 10rem);
+  background-repeat: no-repeat;
   font-size: 0.8rem;
 }

@@ -8,6 +8,10 @@ $LOTA_LIGHT: LotaGrotesqueAlt3-Light, "Helvetica Neue", sans-serif;
 
 // general size
 $gutterWidth: 2rem;
+$gutterWidthSmall: 1rem;
+
+$gutterHeight: 8px;
+$gutterHeightSmall: 4px;
 
 $BODY_FONT: $LOTA_REGULAR;
 $BODY_FONT_SIZE: 1rem;
@@ -40,10 +44,8 @@ $gradientStop3: $headerHeight * $stop2ratio;
 $gradientStop2med: $headerHeightMedium * $stop1ratio;
 $gradientStop3med: $headerHeightMedium * $stop2ratio;
 
-$gutterWidthSmall: 1rem;
 $logoWidth: 160px;
 $logoWidthSmall: 80px;
-$gutterHeight: 8px;
 $headerMenuHeight: 60px;
 $headerMenuHeightMedium: 40px;
 
@@ -52,6 +54,8 @@ $headerMainHeight: $headerHeight - $headerMenuHeight - $gutterHeight;
 $BLUE: #6CB1DB;
 $DARK_BLUE: darken($BLUE, 25%);
 $BIG_TEXT_COLOR: $DARK_BLUE;
+
+$CODE_BG_COLOR: #b3e6d5;
 
 $body: 1rem;
 $bodySmall: 0.8rem;
@@ -66,6 +70,15 @@ $desktop-width: 1024px;
 @mixin media-large {
   @media (min-width: #{$responsiveMedium}) {
     @content;
+  }
+}
+
+@mixin textParams {
+  font-family: $LOTA_REGULAR;
+  font-size: $BODY_FONT_SIZE;
+  @media screen and (max-width: #{$responsiveMedium}) {
+    font-size: $BODY_FONT_SIZE_MEDIUM;
+    margin-bottom: $BODY_FONT_SIZE_MEDIUM/2;
   }
 }
 
