@@ -50,6 +50,12 @@ function Home() {
         </code>
         <p>
           This documentation is for version <code>2.0.5</code> of the looking glass engine package and beyond.
+          Looking Glass Engine was developed under Rollup and should be safe for most modern browsers,
+          especially as it makes no direct reference to DOM objects (window or document). It should
+          also work under any recent (8.x+) release of Node.js.
+        </p>
+        <p>
+          It has internal dependencies on a small part of RxJS, lodash, and <code>@wonderlandlabs/propper</code>.
         </p>
       </article>
     </main>
