@@ -1,6 +1,7 @@
 import HeadView from "../views/Head";
 import PageHeader from '../views/PageHeader';
 import List from '../views/List';
+import l from './../utils/l';
 
 function Home() {
   return <div>
@@ -27,14 +28,14 @@ function Home() {
 
         <code>
           <pre>
-            yarn add @wonderlandlabs/looking-glass-engine
+            {l(`yarn add @wonderlandlabs/looking-glass-engine
 
             --------
 
             import {Store} from '@wonderlandlabs/looking-glass-engine';
 
             const myStore = new Store({})
-            .addStateProps('count', 0, 'integer');
+            .addStateProps('count', 0, 'integer');`)}
           </pre>
         </code>
 
