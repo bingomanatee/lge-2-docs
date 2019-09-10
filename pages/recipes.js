@@ -10,6 +10,14 @@ function Recipes() {
     <main>
       <article>
         <h1>Usage Tips</h1>
+        <h2>Synchronous Actions</h2>
+        <p>Simple property setting is <i>immediate</i>. As soon as you call <code>myStore.actions.setCount(2)</code>
+           a notification will go out the stream. Even if you do so inside another action!
+        </p>
+        <p>
+          If this is undesirable, either bundle your changes at the end of the action by returning a replacement
+          value for state instead of using set[PropertyName] calls, or use transactional locking.
+        </p>
         <h2>Asynchronous Actions</h2>
         <p>Actions return promises; use this to your advantage to make sure that your action return is simultaneous with
            any third-party promise based activity. </p>
@@ -179,8 +187,14 @@ function Recipes() {
         </code>
         <p>
           Note in the above example, the state updates from <code>setB()</code> and <code>setA()</code>
-          do not appear in the event stream.
+          do not appear in the event stream. Without Transactional Locking the event stream would look like this,
+          as each set[PropertyName] call emits a change notification:
         </p>
+        <code>
+          <pre>
+            {`[{a:1, b:2}, {a: 1, b: 1}, {a:2, b:1}]`}
+          </pre>
+        </code>
         <p>
           One minor point: transactional locking does <i>not</i> freeze <code>myStore.state</code>; it will
           get updated in real time by any actions or property setters. It's only effect (unless an error is thrown)
@@ -258,7 +272,7 @@ function Recipes() {
         <p>State can be updated in many ways:</p>
         <h3>Returning state from an action</h3>
         <p>As in redux any value returned from an action replaces a state. Warning - this is different
-        from React's <code>setState</code> method which updates a subset of properties.
+           from React's <code>setState</code> method which updates a subset of properties.
         </p>
         <p>
           By convention we return a new object with the same properties; not purely necessary but for immutability
@@ -286,40 +300,50 @@ function Recipes() {
         </code>
         <h3>Calling other actions, property setter actions</h3>
         <p>creating a state property creates a 'set' action automatically so calling that also updates state.
-        the example above, <code>increment2()</code>, is identical with <code>increment()</code>.</p>
+           the example above, <code>increment2()</code>, is identical with <code>increment()</code>.</p>
         <h3>The bad way - altering state directly. </h3>
         <p><code>incrementCrappy</code> is really... crappy. state is "updated" but the subscribers will not
-        get any notification of the change. </p>
+                                        get any notification of the change. </p>
         <h3>Pro tip: always recreate complex structures</h3>
         <p>Always return new arrays or objects rather than modifying old ones. It might not have direct consequences
-        but it doesn't play well with React and other systems that use identity to trigger updates. (see push and pop above)</p>
+           but it doesn't play well with React and other systems that use identity to trigger updates. (see push and pop
+           above)</p>
         <h2>How to break Looking Glass Stores</h2>
-        <p>If you return a value that doesn't contain the properties you expect the Store will not alert/check for them. That's on you.</p>
+        <p>If you return a value that doesn't contain the properties you expect the Store will not alert/check for them.
+           That's on you.</p>
         <p>If you return something that is not an object the Store will explode in short order. </p>
-        <p>If you call actions with async consequences without await-ing for the results -- and especially if you write crappy actions that deconstruct state (see above) you will get
-        a messed up state. </p>
-        <p>If you alter store.state directly you will not get notified. Also you won't benefit from any type checking done in the prop setters. </p>
-        <p>If you update a property defined by <code>.addStateProp</code> or the <code>props</code> definition in the constructor, you won't benefit from
-        any validation defined in the prop creation. This may be ok if <i>you</i> check the property value (or get lucky), but it is still best to use
-        property setter methods wherever possible.</p>
+        <p>If you call actions with async consequences without await-ing for the results -- and especially if you write
+           crappy actions that deconstruct state (see above) you will get
+           a messed up state. </p>
+        <p>If you alter store.state directly you will not get notified. Also you won't benefit from any type checking
+           done in the prop setters. </p>
+        <p>If you update a property defined by <code>.addStateProp</code> or the <code>props</code> definition in the
+           constructor, you won't benefit from
+           any validation defined in the prop creation. This may be ok if <i>you</i> check the property value (or get
+           lucky), but it is still best to use
+           property setter methods wherever possible.</p>
         <h3>Error Handling</h3>
         <p>
           LGE bends over backwards to trap and channel any thrown errors in your code into the notification stream.
           This includes
         </p>
-          <ul>
-            <li>Errors triggered by putting bad values into validated properties</li>
-            <li>Errors thrown by calls in third party libraries</li>
-            <li>Errors you intentionally throw</li>
-            <li>Errors you accidentally generate (code errors)</li>
-          </ul>
+        <ul>
+          <li>Errors triggered by putting bad values into validated properties</li>
+          <li>Errors thrown by calls in third party libraries</li>
+          <li>Errors you intentionally throw</li>
+          <li>Errors you accidentally generate (code errors)</li>
+        </ul>
         <p>
-          Obviously we can't guarantee 100% idiot-proofing but in most cases you will only pick up on errors by subscribing to
-          your own store and putting a notifier in as the second argument. Which means of course <b>ALWAYS WATCH STREAM FOR ERRORS.</b>
+          Obviously we can't guarantee 100% idiot-proofing but in most cases you will only pick up on errors by
+          subscribing to
+          your own store and putting a notifier in as the second argument. Which means of course <b>ALWAYS WATCH STREAM
+                                                                                                    FOR ERRORS.</b>
         </p>
         <p>
-          Errors will short circuit your action in the middle. This could put you in a half-baked state; transactional locking
-          (see above) should help with the cleanup. If you are having trouble diagnosing problems, call <code>myStore.startDebugging()</code>
+          Errors will short circuit your action in the middle. This could put you in a half-baked state; transactional
+          locking
+          (see above) should help with the cleanup. If you are having trouble diagnosing problems,
+          call <code>myStore.startDebugging()</code>
           and watch the debugStream: <code>myStore.debugStream.subscribe(onInfo, onError)</code>.
         </p>
       </article>
