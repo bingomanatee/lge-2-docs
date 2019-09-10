@@ -73,6 +73,14 @@ function Home() {
           kills off any subscription and completes the stream (and debugStream if present).
         </p>
 
+        <h3>setState(object)</h3>
+        <h3>setState(propertyName, propertyValue)</h3>
+        <p>
+          SetState works like a React component; it assigns the state properties if the object over the state,
+          leaving the other ones unchanged.
+          If you are updating a single property, you can pass the name and value as two parameters.
+        </p>
+
         <hr/>
 
         <h3>Debugging</h3>
