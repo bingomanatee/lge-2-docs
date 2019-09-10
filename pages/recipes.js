@@ -302,6 +302,26 @@ function Recipes() {
         <p>If you update a property defined by <code>.addStateProp</code> or the <code>props</code> definition in the constructor, you won't benefit from
         any validation defined in the prop creation. This may be ok if <i>you</i> check the property value (or get lucky), but it is still best to use
         property setter methods wherever possible.</p>
+        <h3>Error Handling</h3>
+        <p>
+          LGE bends over backwards to trap and channel any thrown errors in your code into the notification stream.
+          This includes
+        </p>
+          <ul>
+            <li>Errors triggered by putting bad values into validated properties</li>
+            <li>Errors thrown by calls in third party libraries</li>
+            <li>Errors you intentionally throw</li>
+            <li>Errors you accidentally generate (code errors)</li>
+          </ul>
+        <p>
+          Obviously we can't guarantee 100% idiot-proofing but in most cases you will only pick up on errors by subscribing to
+          your own store and putting a notifier in as the second argument. Which means of course <b>ALWAYS WATCH STREAM FOR ERRORS.</b>
+        </p>
+        <p>
+          Errors will short circuit your action in the middle. This could put you in a half-baked state; transactional locking
+          (see above) should help with the cleanup. If you are having trouble diagnosing problems, call <code>myStore.startDebugging()</code>
+          and watch the debugStream: <code>myStore.debugStream.subscribe(onInfo, onError)</code>.
+        </p>
       </article>
     </main>
   </div>
