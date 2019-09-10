@@ -8,7 +8,7 @@ function Home() {
     <PageHeader active="home"/>
     <main>
       <article>
-        <h1>Ritual Free JS State Managment</h1>
+        <h1>Ritual Free JS State Management</h1>
         <p>
           Over the years, state management has become one of the pivotal systems that makes or breaks applications and
           app frameworks. Looking Glass Engine is a combination of the best features of Redux, Freactal and RxjS.
@@ -48,6 +48,9 @@ function Home() {
 `}
           </pre>
         </code>
+        <p>
+          This documentation is for version <code>2.0.5</code> of the looking glass engine package and beyond.
+        </p>
       </article>
     </main>
   </div>

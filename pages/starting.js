@@ -22,6 +22,22 @@ function Home() {
             <li>Define any higher order/bridging actions/side effects (like getting data from an API or updating a canvas.)</li>
             <li>Synchronize the Store's state updates and the view layer</li>
           </ol>
+        <h2>Installation</h2>
+        <p>LGE is a module intended to be used in a babelized context. No testing has been done outside of parcel.js/webpack.</p>
+
+        <code>
+          <pre>
+            yarn add @wonderlandlabs/looking-glass-engine
+
+            --------
+
+            import {Store} from '@wonderlandlabs/looking-glass-engine';
+
+            const myStore = new Store({})
+            .addStateProps('count', 0, 'integer');
+          </pre>
+        </code>
+
        <ul>
          <li><a href="/starting/example_1">Example 1: Login Screen (local store)</a></li>
          <li><a href="/starting/example_2">Example 2: Shopping Cart (global store)</a></li>

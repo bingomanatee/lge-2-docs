@@ -9,6 +9,11 @@ function ShoppingCartExample() {
     <main>
       <ShoppingCart />
     </main>
+    <footer>
+      <p>
+        <a href="/starting">Back to "Getting Started"</a>
+      </p>
+    </footer>
   </div>
 }
 

@@ -9,6 +9,11 @@ function Home() {
     <PageHeader active="starting"/>
     <main>
       <Login />
+      <footer>
+        <p>
+          <a href="/starting">Back to "Getting Started"</a>
+        </p>
+      </footer>
     </main>
   </div>
 }

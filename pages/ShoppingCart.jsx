@@ -54,7 +54,6 @@ class ShoppingCart extends Component {
   render() {
     const {cartItems, totalCost} = this.state;
     const {addItem, clearItem} = cart.actions;
-    console.log('---- rendering cart ', cartItems);
     return <section>
       <List>
         <List.Item>
@@ -93,6 +92,11 @@ class ShoppingCart extends Component {
           </div>
         </List.Item>
       </List>
+      <footer>
+        <p>
+          <a href="/starting">Back to "Getting Started"</a>
+        </p>
+      </footer>
     </section>
   }
 }
