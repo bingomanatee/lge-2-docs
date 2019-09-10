@@ -113,11 +113,8 @@ function Recipes() {
           <li>Note the last element in the transactions array at the start of the action; that is the transaction id
               of the current action.
           </li>
-          <li>Inside the outer action, subscribe and look for errors thrown by any sub-action calls.</li>
-          <li>If your stream detects any sub-transaction throws, at the time of the thrown error, the transactional
-              stack will include the actionId of the subTransaction (available from the subscribe watcher) and the id
-              of the outer transaction.
-          </li>
+          <li>Inside the outer action use <code>myStore.myAction().catch((err) => lastErr = err})</code> to detect any
+              transactional errors.</li>
           <li>The most manageable solution to responding to a sub-transactional failure is to throw an error
               and revert the outer transaction. If you feel moved to do more specialized corrective surgery,
               you can do so by watching the state update that the inner transactional reset triggers.
