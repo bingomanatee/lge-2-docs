@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import List from './../views/List';
-import cart from './ShoppingCartStore';
+import cart from '../utils/ShoppingCartStore';
 import uuid from 'uuid/v4';
 
 class Purchaseable {

@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import React from 'react';
 const {Store} = require('@wonderlandlabs/looking-glass-engine');
 
 /**
