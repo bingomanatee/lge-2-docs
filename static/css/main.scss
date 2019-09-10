@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: $HEADER_HEIGHT/2;
   font-family: $HEADER_FONT;
   font-weight: $HEADER_WEIGHT;
-  text-align: center;
+  text-align: left;
   @include media-medium-and-small {
     font-size: $HEADER_HEIGHT_MEDIUM;
     margin-bottom: $HEADER_HEIGHT_MEDIUM/2;
@@ -476,12 +476,28 @@ textarea {
   font-size: 0.8rem;
 }
 
+code {
+  color: $CODE_COLOR;
+  font-weight: 700;
+}
+
 code > pre {
   padding: 1rem;
   max-height: 30rem;
   overflow-y: auto;
+  color: $CODE_BLOCK_COLOR;
   background-color: $CODE_BG_COLOR;
   background: linear-gradient(180deg, darken($CODE_BG_COLOR, 5%) 0%, darken($CODE_BG_COLOR, 8%) 2rem, $CODE_BG_COLOR 7rem, lighten($CODE_BG_COLOR, 10%) 10rem);
   background-repeat: no-repeat;
   font-size: 0.8rem;
+  font-weight: 400;
+}
+
+p.indent {
+  padding-top: 0;
+  margin-top: 0;
+  padding-left: 2rem;
+  @include media-small {
+    padding-left: 1rem;
+  }
 }

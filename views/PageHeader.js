@@ -20,7 +20,7 @@ function PageHeader(props) {
       <span className={scn(active, 'compare')}><a href="/compare">Compare</a></span>
       <span className={scn(active, 'starting')}><a href="/starting">Getting Started</a></span>
       <span className={scn(active, 'recipes')}><a href="/recipes">Recipes</a></span>
-      <span className={scn(active, 'api')}><a href="/api">API</a></span>
+      <span className={scn(active, 'api')}><a href="/apis">API</a></span>
       <span className={scn(active, 'github')}><a href="https://github.com/bingomanatee/looking-glass-engine">Github</a></span>
     </div>
     <div id="header-title">
@@ -28,7 +28,7 @@ function PageHeader(props) {
         Wonderland Labs Presents
       </div>
       <div className="title not-small">
-        Looking Glass Engine
+        Looking Glass Engine <small><code>2.0.5</code></small>
       </div>
     </div>
   </header>

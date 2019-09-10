@@ -146,7 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 1.25rem;
   font-family: LotaGrotesqueAlt3-Black, "Helvetica Neue", sans-serif;
   font-weight: 900;
-  text-align: center; }
+  text-align: left; }
   @media (max-width: 1199px) {
     h1, h2, h3, h4, h5, h6 {
       font-size: 2rem;
@@ -399,13 +399,27 @@ textarea {
   padding: 1rem;
   font-size: 0.8rem; }
 
+code {
+  color: #ac0000;
+  font-weight: 700; }
+
 code > pre {
   padding: 1rem;
   max-height: 30rem;
   overflow-y: auto;
+  color: #2d0000;
   background-color: #b3e6d5;
   background: linear-gradient(180deg, #a0e0ca 0%, #94dcc4 2rem, #b3e6d5 7rem, #d9f3ea 10rem);
   background-repeat: no-repeat;
-  font-size: 0.8rem; }
+  font-size: 0.8rem;
+  font-weight: 400; }
+
+p.indent {
+  padding-top: 0;
+  margin-top: 0;
+  padding-left: 2rem; }
+  @media (max-width: 799px) {
+    p.indent {
+      padding-left: 1rem; } }
 
 /*# sourceMappingURL=main.css.map */

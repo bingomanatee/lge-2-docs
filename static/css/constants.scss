@@ -56,6 +56,8 @@ $DARK_BLUE: darken($BLUE, 25%);
 $BIG_TEXT_COLOR: $DARK_BLUE;
 
 $CODE_BG_COLOR: #b3e6d5;
+$CODE_COLOR: #ac0000;
+$CODE_BLOCK_COLOR: darken($CODE_COLOR, 25%);
 
 $body: 1rem;
 $bodySmall: 0.8rem;

@@ -1,9 +1,9 @@
 {
-  "name": "lge",
-  "version": "1.0.0",
+  "name": "looking-glass-engine-2",
+  "version": "2.0.5",
   "description": "A documentation site about the Looking Glass Engine",
   "main": "index.js",
-  "repository": "https://looking-glass-engine.firebaseapp.com",
+  "repository": "https://github.com/bingomanatee/looking-glass-engine-2",
   "author": "David Edelhart",
   "license": "MIT",
   "private": false,
