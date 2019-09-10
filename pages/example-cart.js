@@ -1,6 +1,7 @@
 import HeadView from "../views/Head";
 import PageHeader from '../views/PageHeader';
-import ShoppingCart from './ShoppingCart'
+import ShoppingCart from './ShoppingCart';
+import Footer from '../views/Footer';
 
 function ShoppingCartExample() {
   return <div>
@@ -9,11 +10,7 @@ function ShoppingCartExample() {
     <main>
       <ShoppingCart />
     </main>
-    <footer>
-      <p>
-        <a href="/starting">Back to "Getting Started"</a>
-      </p>
-    </footer>
+    <Footer />
   </div>
 }
 

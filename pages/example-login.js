@@ -2,6 +2,7 @@ import HeadView from "../views/Head";
 import PageHeader from '../views/PageHeader';
 import List from '../views/List';
 import Login from './Login';
+import Footer from '../views/Footer';
 
 function Home() {
   return <div>
@@ -9,11 +10,7 @@ function Home() {
     <PageHeader active="starting"/>
     <main>
       <Login />
-      <footer>
-        <p>
-          <a href="/starting">Back to "Getting Started"</a>
-        </p>
-      </footer>
+      <Footer/>
     </main>
   </div>
 }
