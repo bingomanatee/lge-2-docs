@@ -21,7 +21,7 @@ function PageHeader(props) {
       <span className={scn(active, 'starting')}><a href="/starting">Getting Started</a></span>
       <span className={scn(active, 'recipes')}><a href="/recipes">Recipes</a></span>
       <span className={scn(active, 'api')}><a href="/apis">API</a></span>
-      <span className={scn(active, 'github')}><a href="https://github.com/bingomanatee/looking-glass-engine">Github</a></span>
+      <span className={scn(active, 'github')}><a href="https://github.com/bingomanatee/looking-glass-engine-2">Github</a></span>
     </div>
     <div id="header-title">
       <div className="lead-in not-small">
