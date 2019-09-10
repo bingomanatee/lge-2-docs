@@ -92,11 +92,6 @@ class ShoppingCart extends Component {
           </div>
         </List.Item>
       </List>
-      <footer>
-        <p>
-          <a href="/starting">Back to "Getting Started"</a>
-        </p>
-      </footer>
     </section>
   }
 }

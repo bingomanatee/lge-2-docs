@@ -422,4 +422,10 @@ p.indent {
     p.indent {
       padding-left: 1rem; } }
 
+footer {
+  padding: 2rem;
+  margin-top: 1rem;
+  color: #535353;
+  border-top: 1px solid gray; }
+
 /*# sourceMappingURL=main.css.map */
