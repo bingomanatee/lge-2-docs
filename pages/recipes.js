@@ -77,11 +77,12 @@ function Recipes() {
                     store.actions.setCartID(cart.id);
                   },
                   async sendProduct(store, product) {
-                    const {data} = await(axios.post('http://
+                    const {data} = await(axios.post('http://www.fakesite.com', product);
+                    //@TODO - integrate server feedback
                   },
-                  async addProduct({state, actions}, productID) {
-                    await axios.put('cart/' + productID);
-                    const {data} = api.get('cart/' + productID);
+                  async addProduct({state, actions}, productID, product) {
+                    await axios.put('cart/' + productID, product);
+                    const {data} = await api.get('cart/');
                     state.actions.setCart(data);
                     const total = state.cart.reduce((total, product) => {}, 0);
                     actions.setTotal(total);
