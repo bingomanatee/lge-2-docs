@@ -140,9 +140,22 @@ function Recipes() {
            state changes from any action calls.</p>
         <h2>Transactional Locks</h2>
         <p>
-          Transactions - an experimental feature - chokes the update stream until an action is fully complete.
-          This is useful in two ways:
-        </p>
+          Transactions - an experimental feature. They do the following: </p>
+        <ol>
+          <li>
+            stop update events from emitting until the transactional
+            action is complete (though subaction calls <i>DO</i>{' '}still change the state)
+          </li>
+          <li> if there is an
+               error in the transaction, returns the state to the version of state that existed prior to the action
+               being called.
+          </li>
+        </ol>
+        <p>Note there are significant implications to this last point; if the state is asynchromous and other activity
+           has happened inside the state, reversion could have issues of its own. But if the transaction is not
+           asyncronous and can throw errors, its a good way to scrub the actions's updates back to start; also
+           if frequent updates triggered a synchronous actions's sub-calls are causing performance issues its
+           a good way to deliver all of an actions' changes in one cycle, rather than on each sub-call.</p>
         <ul>
           <li>
             If you do a lot of prop-setting inside an action but you don't want to broadcast all the intermediary
