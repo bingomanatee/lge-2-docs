@@ -182,10 +182,12 @@ export default class LoginForm extends Component {
     if (this.sub) this.sub.unsubscribe();
   }
   
-  doLogin(){
+  async doLogin(){
     const {username, password, loggingIn} = this.formStore.state;
     if (!loggingIn) {
-      userStore.actions.login(username, password);
+      this.formState.actions.setLoggingIn(true);
+      await userStore.actions.login(username, password);
+      this.formState.actions.setLoggingIn(false);
     }
   }
   
