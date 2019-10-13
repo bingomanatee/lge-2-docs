@@ -6,7 +6,7 @@ function PageHeader(props) {
   const {active} = props;
   return <header>
     <div id="logo">
-      <img className="large" src="/static/img/Logo.svg"/>
+      <ig className="large" src="/static/img/Logo.svg"/>
       <img className="medium" src="/static/img/Logo-sm.svg"/>
     </div>
     <div id="header-menu">
@@ -19,6 +19,7 @@ function PageHeader(props) {
     </span>
       <span className={scn(active, 'compare')}><a href="/compare">Compare</a></span>
       <span className={scn(active, 'starting')}><a href="/starting">Getting Started</a></span>
+      <span className={scn(active, 'react')}><a href="/react">LGE with React</a></span>
       <span className={scn(active, 'recipes')}><a href="/recipes">Recipes</a></span>
       <span className={scn(active, 'api')}><a href="/apis">API</a></span>
       <span className={scn(active, 'github')}><a href="https://github.com/bingomanatee/looking-glass-engine-2">Github</a></span>
