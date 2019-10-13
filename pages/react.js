@@ -94,9 +94,11 @@ export default class LoginForm extends Component {
   }
   
   render () {
-    const {username, password} = this.state;
+    const {username, password, loginError} = this.state;
+    
     return (
       <div className="login-form">
+        {loginError? <p>{loginError.message}</p> : ''}
         <div className="form-row">
           <label>Username</label>
            <input type="text" value={username}
@@ -192,9 +194,10 @@ export default class LoginForm extends Component {
   }
   
   render () {
-    const {username, password} = this.state;
+    const {username, password, loginError, loggingIn} = this.state;
     return (
       <div className="login-form">
+        {loginError? <p>{loginError.message}</p> : ''}
         <div className="form-row">
           <label>Username</label>
            <input type="text" value={username}
@@ -208,7 +211,7 @@ export default class LoginForm extends Component {
         </div>
           
          <div className="form-row">
-          <button onClick={this.doLogin}>Log In</button>
+          {loggingIn ? <p>Logging In, please wait...</p> : :<button onClick={this.doLogin}>Log In</button>}
           </div>
       </div>
     )
@@ -227,6 +230,12 @@ export default class LoginForm extends Component {
         Generally it is easier to pass the state itself as a parameter if a downstream
         component needs to use local actions. But it is valid and possible to destructure
         some or all actions of a local store into a subview if you want to.</p>
+        <h2>Optimizing Refresh</h2>
+        <p>In the examples above, we "dump" all the state from LGE to React.
+           This is easy to understand but inefficient. In a working example you will want
+        to pick and choose which state properties to bind into local state. </p>
+        <p>Also, when combining states there is always the chance of overriding properties
+        from one state to another; be careful to do so selectively.</p>
       </article>
     </main>
   </div>
