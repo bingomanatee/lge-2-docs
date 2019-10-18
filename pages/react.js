@@ -37,27 +37,50 @@ function Home() {
         <code>
           <pre>
             {l(`
-import {Store} from '@wonderlandlabs/looking-glass-engine';
-import tryToLogUserIn from './user/tryToLogIn';
-let storedUser = localStorage.get('user');
-if (!storedUser && (typeof storedUser === 'object')) storedUser = false;
-
-export default new Store({
+const userStore = new Store({
   actions: {
-    async login (store, username, password) {
-       store.actions.setLoginError(false);
-       try {
-          let user = await tryToLogIn(username, password);
-          store.actions.setUser(user);
-       } catch (err) {
-          this.setLoginError(err);
-       }
-       this.set
+    loadUserFromLocalStorage(store) {
+      let userString = localStorage.getItem('user');
+      try {
+        store.actions.setUser(JSON.parse(userString));
+      } catch (err) {
+        store.actions.clearUserFromLocalStorage();
+      }
+    },
+    saveUserToLocalStorage(store) {
+      /** ... omitted for brevity ... (**) */
+      const userObject = store.actions.user;
+      if (!userObject) {
+        localStorage.removeItem('user');
+        return;
+      }
+      try {
+        localStorage.setItem('user', userString);
+      } catch (err) {
+        store.actions.clearUserFromLocalStorage();
+      }
+    },
+    clearUserFromLocalStorage(store) {
+      localStorage.removeItem('user');
+      store.actions.setUser(null);
+    },
+    logout(store) {
+      store.actions.clearUserFromLocalStorage();
+    },
+    async login(store, username, password) {
+      store.actions.setLoginError(false);
+      try {
+        let user = await tryToLogIn(username, password);
+        store.actions.setUser(user);
+        store.actions.saveUserToLocalStorage(user);
+      } catch (err) {
+        this.setLoginError(err);
+      }
     }
   }
 })
-.addProp('loginError')
-.addProp('user', user, 'object');
+  .addProp('loginError')
+  .addProp('user', storedUser || null, 'object');
 `)}
           </pre>
         </code>
