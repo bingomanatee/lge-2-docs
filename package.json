@@ -17,6 +17,7 @@
   },
   "scripts": {
     "dev": "next",
+    "deploy": "now deploy --prod",
     "build": "next build",
     "start": "next start"
   },
