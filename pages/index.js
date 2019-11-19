@@ -57,6 +57,17 @@ function Home() {
         <p>
           It has internal dependencies on a small part of RxJS, lodash, and <code>@wonderlandlabs/propper</code>.
         </p>
+        <h2>Breaking news: version 3.0</h2>
+        <p>
+          Version 3.0 is released and under development; take care to target thw 2.x release branch if you want
+          to use the documented and heavily real world tested version.
+        </p>
+        <p>
+          Version 3.0 is similar to LGE 2.1.0, but takes sharp departures from the features documented here.
+          And as mentioned 3.x has NOT had the level of production testing that branch 2.x has.
+          In the coming weeks I will provide version 3.x documentation as its profile becomes better tested and
+          refined with real use.
+        </p>
       </article>
     </main>
   </div>
