@@ -1,6 +1,7 @@
 import HeadView from "../../views/Head";
 import PageHeader from '../../views/PageHeader';
 import List from '../../views/List';
+import l from '../../utils/l';
 
 function Home() {
   return <div>
@@ -42,9 +43,8 @@ function Home() {
 
         <code>
           <pre>
-            {`import _ from 'lodash';
-
-const {Store} = require('@wonderlandlabs/looking-glass-engine');
+            {l(`import _ from 'lodash';
+import {ValueStream} from '@wonderlandlabs/looking-glass-engine';
 
 /**
  * A Micro-structure for things in a cart; in a real app we would be validating things
@@ -52,8 +52,8 @@ const {Store} = require('@wonderlandlabs/looking-glass-engine');
  */
 class CartItem {
   constructor(id, name, unitCost = 0, qty = 1, notes = '') {
-    if (!(_.isNumber(qty) && _.isNumber(unitCost))){
-      throw new Error(\`bad item ($-{id}, $-{name}, $ $-{unitCost}, q[$-{qty}])\`);
+    if (!(_.isNumber(qty) && _.isNumber(unitCost))) {
+      throw new Error(\`bad item ($\{id}, $\{name}, $ $\{unitCost}, q[$\{qty}])\`);
     }
     this.id = id;
     this.name = name;
@@ -71,48 +71,35 @@ class CartItem {
   }
 }
 
-
-const cart = new Store({
-  actions: {
-    async addItem(store, id, qty = 1, name, unitCost, notes = '') {
-      if (_.isObject(id)) {
-        console.log('adding item (obj)', id);
-        return store.actions.addItem(id.id, qty,  id.name, id.unitCost, id.notes);
-      }
-      const cart = _.get(store, 'state.cartItems');
-      const existing = _.find(cart, {id});
-      if (existing) {
-        existing.addMore(qty);
-      } else {
-        cart.push(new CartItem(id, name, unitCost, qty, notes));
-      }
-      await store.actions.setCartItems([...cart]);
-      store.actions.updateCost();
-    },
-    clearItem({state, actions}, id){
-      const {cartItems} = state;
-      actions.setCartItems(_.reject(cartItems, {id}));
-      actions.updateCost();
-    },
-    updateCost({state, actions}){
-      const {cartItems} = state;
-      const newCost = cartItems.reduce((c, i) => c + i.itemCost, 0);
-      actions.setTotalCost(newCost);
+const cart = new ValueStream('cart')
+  .method('addItem', (stream, id, qty = 1, name, unitCost, notes = '') => {
+    if (_.isObject(id)) {
+      console.log('adding item (obj)', id);
+      return stream.do.addItem(id.id, qty, id.name, id.unitCost, id.notes);
     }
-  },
-  props: {
-    totalCost: {
-      type: 'number',
-      start: 0
-    },
-    cartItems: {
-      type: 'array',
-      start: []
+    const cart = stream.get('cartItems');
+    const existing = _.find(cart, {id});
+    if (existing) {
+      existing.addMore(qty);
+    } else {
+      const item = new CartItem(id, name, unitCost, qty, notes);
+      stream.do.setCartItems([...cart, item]);
     }
-  }
-});
+    stream.do.updateCost();
+  })
+  .method('updateCost', (stream) => {
+    const newCost = stream.get('cartItems').reduce((c, i) => c + i.itemCost, 0);
+    stream.do.setTotalCost(newCost);
+  })
+  .method('clearItem', (stream, id) => {
+    stream.do.setCartItems(_.reject(stream.get('cartItems'), {id}));
+    stream.do.updateCost();
+  })
+  .property('totalCost', 0, 'number')
+  .property('cartItems', [], 'array');
 
-export default cart;`}
+export default cart;
+`)}
           </pre>
         </code>
 
@@ -123,9 +110,9 @@ export default cart;`}
         </p>
         <code>
           <pre>
-            {`import React, {Component} from 'react';
+            {l(`import React, {Component} from 'react';
 import List from './../views/List';
-import cart from './ShoppingCartStore';
+import cart from '../utils/ShoppingCartStore';
 import uuid from 'uuid/v4';
 
 class Purchaseable {
@@ -154,7 +141,7 @@ class ShoppingCart extends Component {
   constructor(params) {
     super(params);
 
-    this.state = {...cart.state};
+    this.state = {...cart.value};
   }
 
   componentWillUnmount() {
@@ -168,7 +155,7 @@ class ShoppingCart extends Component {
     // This also means that actions for the global store may trigger updates on this component.
 
     this._sub = cart.subscribe((store) => {
-      this.setState(store.state)
+      this.setState(store.value)
     }, (err) => {
       console.log('Shopping Cart Error: ', err);
     }, () => { // complete
@@ -178,8 +165,7 @@ class ShoppingCart extends Component {
 
   render() {
     const {cartItems, totalCost} = this.state;
-    const {addItem, clearItem} = cart.actions;
-    console.log('---- rendering cart ', cartItems);
+    const {addItem, clearItem} = cart.do;
     return <section>
       <List>
         <List.Item>
@@ -188,7 +174,7 @@ class ShoppingCart extends Component {
           </List.ItemHead>
           <ul>
             {fruits.map(fruit => <li key={fruit.id}>
-            {fruit.name} <button  onClick={() => addItem(fruit, 1)}>Add</button>
+              {fruit.name} <button  onClick={() => addItem(fruit, 1)}>Add</button>
             </li>)}
           </ul>
         </List.Item>
@@ -198,7 +184,7 @@ class ShoppingCart extends Component {
           </List.ItemHead>
           <ul>
             {veggies.map( v => <li key={v.id}>
-            {v.name} <button  onClick={() => addItem(v, 1)}>Add</button>
+              {v.name} <button  onClick={() => addItem(v, 1)}>Add</button>
             </li>)}
           </ul>
         </List.Item>
@@ -208,17 +194,13 @@ class ShoppingCart extends Component {
           </List.ItemHead>
           <dl>
             {cartItems.map( item => <React.Fragment>
-                <dt key={item.id}>
-                {item.name} ({item.qty}) $-{item.unitCost.toFixed(2)} each: 
-                </dt>
-              <dd style={rightAlign}>
-              <button onClick={() =>clearItem(item.id)}>remove</button> $-{item.itemCost.toFixed(2)}
-              </dd>
+                <dt key={item.id}>{item.name} ({item.qty}) $\{item.unitCost.toFixed(2)} each: </dt>
+              <dd style={rightAlign}> <button onClick={() =>clearItem(item.id)}>remove</button> $\{item.itemCost.toFixed(2)}</dd>
             </React.Fragment>)}
           </dl>
           <hr />
           <div style={rightAlign}>
-          <b>TOTAL: $-{totalCost.toFixed(2)}</b>
+          <b>TOTAL: $\{totalCost.toFixed(2)}</b>
           </div>
         </List.Item>
       </List>
@@ -226,9 +208,7 @@ class ShoppingCart extends Component {
   }
 }
 
-
-export default ShoppingCart;
-`}
+export default ShoppingCart;`)}
           </pre>
         </code>
 

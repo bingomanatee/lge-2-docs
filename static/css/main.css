@@ -428,4 +428,19 @@ footer {
   color: #535353;
   border-top: 1px solid gray; }
 
+dl, dl * {
+  font-family: 'LotaGrotesqueAlt3', "Helvetica Neue", Helvetica, sans-serif; }
+
+dt {
+  font-weight: bold;
+  padding: 0;
+  margin: 0; }
+
+dd {
+  font-weight: normal;
+  padding-top: 0.25rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  padding-bottom: 0.5rem; }
+
 /*# sourceMappingURL=main.css.map */

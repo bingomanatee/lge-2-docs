@@ -1,6 +1,7 @@
 import HeadView from "../../views/Head";
 import PageHeader from '../../views/PageHeader';
 import List from '../../views/List';
+import l from '../../utils/l';
 
 function Home() {
   return <div>
@@ -10,18 +11,23 @@ function Home() {
       <article>
         <h1>Getting Started/Example 1: localized State in a login form</h1>
 
-        <p>for a login form, the state can be encapsulated in the component; since there is no need to share state
-           outside of the view, we add the store as a property of the Login view.</p>
+        <p>The ValueStream is created in the component; since there is no need to share state
+           outside of the view, we add the stream as a property of the Login view. It has the same lifespan as the Login view.</p>
         <p>Along with the username/password fields, we can add a host of utility such as a status message for each
            field and a flag to disable login with invalid value. Normally we'd submit to an API end point, ut in this case
            we just use `window.alert` to echo the data and reset status. (note to be lazy, we snapshot state initally
            and return the snaspshot in the `reset()` action)</p>
-
+        <p>To reduce repeated renders, some methods are marked as transactional
+           (the third parameter in <code>.method(name, fn, trans)</code>.
+        This suppresses all updating of the component until the method is complete.
+        </p>
         <code>
           <pre>
-            {`import React, {Component} from 'react';
+            {l(
+              `
+import React, {Component} from 'react';
 
-const {Store} = require('@wonderlandlabs/looking-glass-engine');
+const {ValueStream} = require('@wonderlandlabs/looking-glass-engine');
 import _ from 'lodash';
 
 class Login extends Component {
@@ -29,95 +35,75 @@ class Login extends Component {
   constructor(params) {
     super(params);
 
-    this.store = new Store({
-        actions: {
-          submit(store) {
-            const {state, actions} = store;
-            const {username, password} = state;
-            window.alert(\`userName = "$-{username}; password="$-{password}; submitting, and resetting state'\`);
-            actions.reset();
-          },
-          toggleShowPassword({actions, state}) {
-            actions.setShowPassword(!state.showPassword);
-          },
-          chooseUsername(store, e) {
-          /** note -- as a convention when you want to add side effect handling 
-           * around a "set___" property handler, we use "choose___".
-           * In this case we can also delegate event extraction to the choose function. */
-            const {actions} = store;
-            const un = _.get(e, 'target.value', e);
-            actions.setUsername(un);
-            if (!un) {
-              actions.setUnMsg('required');
-            } else if (un.length < 4) {
-              actions.setUnMsg('must be at least 4 characters');
-            } else {
-              actions.setUnMsg('valid');
-            }
-            actions.checkCanSubmit();
-          },
-          checkCanSubmit({actions, state}) {
-          /* for economy sometimes we deconstuct the store argument. 
-           * WARNING: the state object will NOT be kept up to date with changes to state
-           * so only do this if you don't need to examine state AFTER you call any actions.
-           */
-            const {unMsg, pwMsg} = state;
-            actions.setCanSubmit(unMsg === 'valid' && pwMsg === 'valid');
-          },
-          reset(){
-          // a bit of lazy;
-            return {...initialState};
-          },
-          choosePassword(store, e) {
-            const {actions} = store;
-            const pw = _.get(e, 'target.value', '');
-            actions.setPassword(pw);
-            if (pw.length < 4) {
-              actions.setPwMsg('must be at least 8 characters');
-            } else if (!(/[a-z]/.test(pw) && /[A-Z]/.test(pw) && /[\\d]/.test(pw))) {
-              actions.setPwMsg('must have one uppercase, one lowercase, and one number');
-            } else {
-              actions.setPwMsg('valid');
-            }
-            actions.checkCanSubmit();
-          }
+    this.store = new ValueStream('login')
+      .method('submit', (stream) => {
+      const {username, password} = stream.value;
+      window.alert(\`userName = "$\{username}; password="$\{password}; submitting, and resetting state'\`);
+      stream.do.reset();
+    })
+      .method('toggleShowPassword', (stream) => {
+        stream.do.setShowPassword(!stream.get('showPassword'));
+      })
+      .method('chooseUsername', (stream, e) => {
+        const un = _.get(e, 'target.value', e);
+        stream.do.setUsername(un);
+        if (!un) {
+          stream.do.setUnMsg('required');
+        } else if (un.length < 4) {
+          stream.do.setUnMsg('must be at least 4 characters');
+        } else {
+          stream.do.setUnMsg('valid');
         }
-      }
-    )
-      .addStateProp('username', '', 'string')
-      .addStateProp('password', '', 'string')
-      .addStateProp('showPassword', false, 'boolean')
-      .addStateProp('canSubmit', false, 'boolean')
-      .addStateProp('unMsg', 'required', 'string')
-      .addStateProp('pwMsg', 'required', 'string');
+        stream.do.checkCanSubmit();
+      }, true)
+      .method('checkCanSubmit', (stream) => {
+        const {unMsg, pwMsg} = stream.value;
+        stream.do.setCanSubmit(unMsg === 'valid' && pwMsg === 'valid');
+      })
+      .method('reset', (stream) => {
+        Object.keys(initialState).forEach((key) => {
+          stream.set(key, initialState[key])
+        });
+      }, true)
+      .method('choosePassword', (stream, e) => {
+        const pw = _.get(e, 'target.value', '');
+        stream.do.setPassword(pw);
+        if (pw.length < 4) {
+          stream.do.setPwMsg('must be at least 8 characters');
+        } else if (!(/[a-z]/.test(pw) && /[A-Z]/.test(pw) && /[\\d]/.test(pw))) {
+          stream.do.setPwMsg('must have one uppercase, one lowercase, and one number');
+        } else {
+          stream.do.setPwMsg('valid');
+        }
+        stream.do.checkCanSubmit();
+      }, true)
+      .property('username', '', 'string')
+      .property('password', '', 'string')
+      .property('showPassword', false, 'boolean')
+      .property('canSubmit', false, 'boolean')
+      .property('unMsg', 'required', 'string')
+      .property('pwMsg', 'required', 'string');
 
-    const initialState = this.store.state;
-    this.state = {...this.store.state};
+    const initialState = this.store.value;
+    this.state = {...initialState};
   }
 
   componentWillUnmount() {
-    // see RxJS subscription
     this._sub.unsubscribe();
   }
 
   componentDidMount() {
-  /*
-   * this lifecycle event happens once after render. 
-   * the first argument happens every state update.
-   * the next is an error feedback function.
-   * there is a third listener for completion, but as we're causing completion ourselves
-   * its a bit redundant.
-   */
-    this._sub = this.store.stream.subscribe((store) => {
-      this.setState(store.state)
+    console.log('mounted');
+    this._sub = this.store.subscribe((store) => {
+      this.setState(store.value)
     }, (err) => {
       console.log('login error: ', err);
-    });
+    })
   }
 
   render() {
-    const {username, unMsg, password, pwMsg, showPassword, canSubmit} = this.store.state;
-    const {chooseUsername, choosePassword, submit, toggleShowPassword} = this.store.actions;
+    const {username, unMsg, password, pwMsg, showPassword, canSubmit} = this.store.value;
+    const {chooseUsername, choosePassword, submit, toggleShowPassword} = this.store.do;
 
     return <section>
       <div className="form-row">
@@ -138,10 +124,22 @@ class Login extends Component {
   }
 }
 
-
-export default Login;`}
+export default Login;
+              `
+            )}
           </pre>
         </code>
+
+        <h3>Standard practices with Looking Glass Engine</h3>
+        <p>The state is initialized by copying the store's value into the components' state, both initially,
+           and in <code>componentDidMount</code>.
+           When the store updates, the component will re-render. <code>subscribe(...)</code> returns an RXJS Subscription,
+        which we terminate when the component closes.</p>
+        <p>The stores' values are deserialized from the <code>.value</code> property. This is more readable, but
+        in larger stores, tactical use of get is more economical.</p>
+        <p>All methods in LGE have no practical use for the <code>this</code> concept; their first parameter is the context,
+        so they can be used unbound as dom listeners.</p>
+        <p>Every property definition creates a <code>setMyName</code> method.</p>
 
         <p>the working example is <a href="/example-login">Here.</a></p>
         <h2>Next Example</h2>

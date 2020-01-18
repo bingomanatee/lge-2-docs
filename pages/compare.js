@@ -43,6 +43,14 @@ function Home() {
             </ul>
           </List.Item>
           <List.Item>
+            <List.ItemHead>Like Saga</List.ItemHead>
+            <ul>
+              <li>It is async friendly</li>
+              <li>you can call one method from another method</li>
+              <li>because of this you can tell stories by tracking which sub-methods are called</li>
+            </ul>
+          </List.Item>
+          <List.Item>
             <List.ItemHead>Like Freactal</List.ItemHead>
             <ul>
               <li>A LGE State's structure is fully exposed in its configuration file</li>
@@ -75,13 +83,26 @@ function Home() {
             </List.ItemHead>
             <ul>
               <li>LGE is concise, opinionated and centralized</li>
-              <li>It can be leared and used quickly</li>
-              <i>Its documentation is under 5,000 pages</i>
+              <li>It can be learned and used quickly</li>
+              <li>It is easy to write methods that update one or several streams</li>
+              <li>Its documentation is under 5,000 pages</li>
             </ul>
             <small>
-              *It does have an RXJS
-              BehaviorSubject at its heart, so you can use RxJS to control update flow if you want.
+              *It does have an RXJS BehaviorSubject at its heart,
+              so you can use RxJS to control update flow if you want.
             </small>
+          </List.Item>
+          <List.Item>
+            <List.ItemHead>
+              Unlike Saga
+            </List.ItemHead>
+            <ul>
+              <li>You can watch individual values being updated. (Saga lets you watch the methods <i>that change a value</i>
+              but it's not the same thing.)</li>
+              <li>It uses OOP classical property/method metaphors</li>
+              <li>Each collection is an independent, self-contained instance.</li>
+              <li>It doesn't seperate the methods or properties from the definition of their names.</li>
+            </ul>
           </List.Item>
           <List.Item>
             <List.ItemHead>
@@ -129,6 +150,14 @@ function Home() {
             <p>
               It is build with unit testing and as Stores are not buried in DOM, they can be
               tested by any unit test system without reference to the view layer.
+            </p>
+          </List.Item>
+          <List.Item>
+            <List.ItemHead>
+              Individual property change watching
+            </List.ItemHead>
+            <p>
+              You can subscribe to changes to individual properties through the <code>watch</code> method.
             </p>
           </List.Item>
         </List>

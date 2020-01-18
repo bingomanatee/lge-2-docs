@@ -13,7 +13,7 @@ export default (str) =>{
   }).reduce((max, n) => {
     if (n > 0) {
       if (max === Infinity) return n;
-      return max;
+      return Math.min(n, max);
     }
     return max;
   }, Infinity);

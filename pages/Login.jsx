@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-const {Store} = require('@wonderlandlabs/looking-glass-engine');
+const {ValueStream} = require('@wonderlandlabs/looking-glass-engine');
 import _ from 'lodash';
 
 class Login extends Component {
@@ -8,62 +8,57 @@ class Login extends Component {
   constructor(params) {
     super(params);
 
-    this.store = new Store({
-        actions: {
-          submit(store) {
-            const {state, actions} = store;
-            const {username, password} = state;
-            window.alert(`userName = "${username}; password="${password}; submitting, and resetting state'`);
-            actions.reset();
-          },
-          toggleShowPassword({actions, state}) {
-            actions.setShowPassword(!state.showPassword);
-          },
-          chooseUsername(store, e) {
-            const {actions} = store;
-            const un = _.get(e, 'target.value', e);
-            actions.setUsername(un);
-            if (!un) {
-              actions.setUnMsg('required');
-            } else if (un.length < 4) {
-              actions.setUnMsg('must be at least 4 characters');
-            } else {
-              actions.setUnMsg('valid');
-            }
-            actions.checkCanSubmit();
-          },
-          checkCanSubmit({actions, state}) {
-            const {unMsg, pwMsg} = state;
-            actions.setCanSubmit(unMsg === 'valid' && pwMsg === 'valid');
-          },
-          reset(){
-            return {...initialState};
-          },
-          choosePassword(store, e) {
-            const {actions} = store;
-            const pw = _.get(e, 'target.value', '');
-            actions.setPassword(pw);
-            if (pw.length < 4) {
-              actions.setPwMsg('must be at least 8 characters');
-            } else if (!(/[a-z]/.test(pw) && /[A-Z]/.test(pw) && /[\d]/.test(pw))) {
-              actions.setPwMsg('must have one uppercase, one lowercase, and one number');
-            } else {
-              actions.setPwMsg('valid');
-            }
-            actions.checkCanSubmit();
-          }
+    this.store = new ValueStream('login')
+      .method('submit', (stream) => {
+      const {username, password} = stream.value;
+      window.alert(`userName = "${username}; password="${password}; submitting, and resetting state'`);
+      stream.do.reset();
+    })
+      .method('toggleShowPassword', (stream) => {
+        stream.do.setShowPassword(!stream.get('showPassword'));
+      })
+      .method('chooseUsername', (stream, e) => {
+        const un = _.get(e, 'target.value', e);
+        stream.do.setUsername(un);
+        if (!un) {
+          stream.do.setUnMsg('required');
+        } else if (un.length < 4) {
+          stream.do.setUnMsg('must be at least 4 characters');
+        } else {
+          stream.do.setUnMsg('valid');
         }
-      }
-    )
-      .addStateProp('username', '', 'string')
-      .addStateProp('password', '', 'string')
-      .addStateProp('showPassword', false, 'boolean')
-      .addStateProp('canSubmit', false, 'boolean')
-      .addStateProp('unMsg', 'required', 'string')
-      .addStateProp('pwMsg', 'required', 'string');
+        stream.do.checkCanSubmit();
+      }, true)
+      .method('checkCanSubmit', (stream) => {
+        const {unMsg, pwMsg} = stream.value;
+        stream.do.setCanSubmit(unMsg === 'valid' && pwMsg === 'valid');
+      })
+      .method('reset', (stream) => {
+        Object.keys(initialState).forEach((key) => {
+          stream.set(key, initialState[key])
+        });
+      }, true)
+      .method('choosePassword', (stream, e) => {
+        const pw = _.get(e, 'target.value', '');
+        stream.do.setPassword(pw);
+        if (pw.length < 4) {
+          stream.do.setPwMsg('must be at least 8 characters');
+        } else if (!(/[a-z]/.test(pw) && /[A-Z]/.test(pw) && /[\d]/.test(pw))) {
+          stream.do.setPwMsg('must have one uppercase, one lowercase, and one number');
+        } else {
+          stream.do.setPwMsg('valid');
+        }
+        stream.do.checkCanSubmit();
+      }, true)
+      .property('username', '', 'string')
+      .property('password', '', 'string')
+      .property('showPassword', false, 'boolean')
+      .property('canSubmit', false, 'boolean')
+      .property('unMsg', 'required', 'string')
+      .property('pwMsg', 'required', 'string');
 
-    const initialState = this.store.state;
-    this.state = {...this.store.state};
+    const initialState = this.store.value;
+    this.state = {...initialState};
   }
 
   componentWillUnmount() {
@@ -72,19 +67,16 @@ class Login extends Component {
 
   componentDidMount() {
     console.log('mounted');
-
-    this._sub = this.store.stream.subscribe((store) => {
-      this.setState(store.state)
+    this._sub = this.store.subscribe((store) => {
+      this.setState(store.value)
     }, (err) => {
       console.log('login error: ', err);
-    }, () => { // complete
-      this._sub.unsubscribe();
     })
   }
 
   render() {
-    const {username, unMsg, password, pwMsg, showPassword, canSubmit} = this.store.state;
-    const {chooseUsername, choosePassword, submit, toggleShowPassword} = this.store.actions;
+    const {username, unMsg, password, pwMsg, showPassword, canSubmit} = this.store.value;
+    const {chooseUsername, choosePassword, submit, toggleShowPassword} = this.store.do;
 
     return <section>
       <div className="form-row">

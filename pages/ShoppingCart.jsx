@@ -29,7 +29,7 @@ class ShoppingCart extends Component {
   constructor(params) {
     super(params);
 
-    this.state = {...cart.state};
+    this.state = {...cart.value};
   }
 
   componentWillUnmount() {
@@ -43,7 +43,7 @@ class ShoppingCart extends Component {
     // This also means that actions for the global store may trigger updates on this component.
 
     this._sub = cart.subscribe((store) => {
-      this.setState(store.state)
+      this.setState(store.value)
     }, (err) => {
       console.log('Shopping Cart Error: ', err);
     }, () => { // complete
@@ -53,7 +53,7 @@ class ShoppingCart extends Component {
 
   render() {
     const {cartItems, totalCost} = this.state;
-    const {addItem, clearItem} = cart.actions;
+    const {addItem, clearItem} = cart.do;
     return <section>
       <List>
         <List.Item>

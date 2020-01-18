@@ -3,7 +3,7 @@ import Head from 'next/head'
 function HeadView() {
   return <Head>
     <meta charSet="utf-8"/>
-    <title>Looking Glass Engine</title>
+    <title>Looking Glass Engine 3.1</title>
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 

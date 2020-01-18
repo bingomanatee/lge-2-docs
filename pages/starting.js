@@ -18,13 +18,14 @@ function Home() {
           The basic flow of State design in LGE is:
         </p>
           <ol>
-            <li>Decide whether you want a <i>central</i> or <i>local</i> store.</li>
+            <li>Decide whether you want a <i>global</i> or <i>local</i> store.</li>
             <li>Define the properties you want to put into state</li>
-            <li>Define any higher order/bridging actions/side effects (like getting data from an API or updating a canvas.)</li>
-            <li>Synchronize the Store's state updates and the view layer</li>
+            <li>Define any methods (like getting data from an API or updating a canvas.)</li>
+            <li>Synchronize the Store's values with the view layer</li>
           </ol>
         <h2>Installation</h2>
-        <p>LGE is a module intended to be used in a babelized context. No testing has been done outside of parcel.js/webpack.</p>
+        <p>LGE is a module intended to be used in a babelized context.
+           It has been tested/used in React, and its unit tests run in tap/node.</p>
 
         <code>
           <pre>
@@ -32,10 +33,10 @@ function Home() {
 
             --------
 
-            import {Store} from '@wonderlandlabs/looking-glass-engine';
+            import {ValueStream} from '@wonderlandlabs/looking-glass-engine';
 
-            const myStore = new Store({})
-            .addStateProps('count', 0, 'integer');`)}
+            const myStore = new ValueStream('counter')
+            .property('count', 0, 'integer');`)}
           </pre>
         </code>
 

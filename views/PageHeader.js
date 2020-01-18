@@ -29,7 +29,7 @@ function PageHeader(props) {
         Wonderland Labs Presents
       </div>
       <div className="title not-small">
-        Looking Glass Engine <small><code>2.0.5</code></small>
+        Looking Glass Engine <small><code>3.1</code></small>
       </div>
     </div>
   </header>

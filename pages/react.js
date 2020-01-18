@@ -11,11 +11,12 @@ function Home() {
       <article>
         <h1>Connecting with React</h1>
         <p>
-          Connecting to a Store in React is the same as with any other <a href="https://www.robinwieruch.de/react-rxjs-state-management-tutorial" target="rx">
+          Connecting to a ValueStream in React is the same as with any other
+          <a href="https://www.robinwieruch.de/react-rxjs-state-management-tutorial" target="rx">
           RxJS Observable</a>, with one minor twitch. The method varies depending on whether you have a transient
           state that shares the components' lifecycle or a global store(s) that are shared between components.
         </p>
-        <h2>A Global Store</h2>
+        <h2>A Global ValueStream</h2>
         <p>Global stores are best for scenarios where the store is shared throughout the application.
            Classic examples include:</p>
         <ul>
@@ -37,19 +38,25 @@ function Home() {
         <code>
           <pre>
             {l(`
-const userStore = new Store({
-  actions: {
-    loadUserFromLocalStorage(store) {
+const userStore = new ValueStream('userStore')
+.method('loadUserFromLocalStorage', (store) => {
       let userString = localStorage.getItem('user');
       try {
-        store.actions.setUser(JSON.parse(userString));
+        store.do.setUser(JSON.parse(userString));
       } catch (err) {
-        store.actions.clearUserFromLocalStorage();
+        store.do.clearUserFromLocalStorage();
       }
-    },
-    saveUserToLocalStorage(store) {
-      /** ... omitted for brevity ... (**) */
-      const userObject = store.actions.user;
+    })
+.method('loadUserFromLocalStorage', (store) => {
+      let userString = localStorage.getItem('user');
+      try {
+        store.do.setUser(JSON.parse(userString));
+      } catch (err) {
+        store.do.clearUserFromLocalStorage();
+      }
+    })
+    .method(   'saveUserToLocalStorage', (store) =>{
+      const userObject = store.do.user;
       if (!userObject) {
         localStorage.removeItem('user');
         return;
@@ -57,30 +64,28 @@ const userStore = new Store({
       try {
         localStorage.setItem('user', userString);
       } catch (err) {
-        store.actions.clearUserFromLocalStorage();
+        store.do.clearUserFromLocalStorage();
       }
-    },
-    clearUserFromLocalStorage(store) {
+    })
+    .method( 'clearUserFromLocalStorage', (store) => {
       localStorage.removeItem('user');
-      store.actions.setUser(null);
-    },
-    logout(store) {
-      store.actions.clearUserFromLocalStorage();
-    },
-    async login(store, username, password) {
-      store.actions.setLoginError(false);
+      store.do.setUser(null);
+    })
+    .method('logout', (store) => {
+      store.do.clearUserFromLocalStorage();
+    })
+    .method(login, async (store, username, password) {
+      store.do.setLoginError(false);
       try {
         let user = await tryToLogIn(username, password);
-        store.actions.setUser(user);
-        store.actions.saveUserToLocalStorage(user);
+        store.do.setUser(user);
+        store.do.saveUserToLocalStorage(user);
       } catch (err) {
         this.setLoginError(err);
       }
-    }
-  }
-})
-  .addProp('loginError')
-  .addProp('user', storedUser || null, 'object');
+    })
+  .property('loginError', null)
+  .property('user', storedUser || null);
 `)}
           </pre>
         </code>
@@ -113,7 +118,7 @@ export default class LoginForm extends Component {
   
   doLogin(){
     const {username, password} = this.state;
-    userStore.actions.login(username, password);
+    userStore.do.login(username, password);
   }
   
   render () {
@@ -160,8 +165,8 @@ export default class LoginForm extends Component {
           <li>Synchronous updates of properties</li>
           <li>Transactional grouping of serial updates</li>
           <li>Better trapping of thrown errors</li>
-          <li>The ability to use factory patterns
-              to apply similar states across multiple components</li>
+          <li>The ability to use factory patterns to apply similar states across multiple components</li>
+          <li>A state system testable outside of the view layer</li>
         </ul>
 
         <p>The pattern for local storage sync is as follows:</p>
@@ -176,7 +181,7 @@ export default class LoginForm extends Component {
           <pre>
             {l(`
 import userStore from './userStore';
-import {Store} from '@wonderlandlabs/looking-glass-engine';
+import {ValueStream} from '@wonderlandlabs/looking-glass-engine';
 import React, {Component} from 'react';
 
 export default class LoginForm extends Component {
@@ -210,9 +215,9 @@ export default class LoginForm extends Component {
   async doLogin(){
     const {username, password, loggingIn} = this.formStore.state;
     if (!loggingIn) {
-      this.formState.actions.setLoggingIn(true);
-      await userStore.actions.login(username, password);
-      this.formState.actions.setLoggingIn(false);
+      this.formState.do.setLoggingIn(true);
+      await userStore.do.login(username, password);
+      this.formState.do.setLoggingIn(false);
     }
   }
   
@@ -224,13 +229,13 @@ export default class LoginForm extends Component {
         <div className="form-row">
           <label>Username</label>
            <input type="text" value={username}
-            onChange={({target}) => this.formStore.actions.setUsername(target.value) } />
+            onChange={({target}) => this.formStore.do.setUsername(target.value) } />
         </div>
         
         <div className="form-row">
           <label>Password</label>
           <input type="password" value={username} 
-          onChange={({target}) => this.formStore.actions.setPassword(target.value)} />
+          onChange={({target}) => this.formStore.do.setPassword(target.value)} />
         </div>
           
          <div className="form-row">
