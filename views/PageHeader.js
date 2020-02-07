@@ -21,6 +21,7 @@ function PageHeader(props) {
       <span className={scn(active, 'starting')}><a href="/starting">Getting Started</a></span>
       <span className={scn(active, 'react')}><a href="/react">LGE with React</a></span>
       <span className={scn(active, 'recipes')}><a href="/recipes">Recipes</a></span>
+      <span className={scn(active, 'hooks')}><a href="/hooks">Hooks</a></span>
       <span className={scn(active, 'api')}><a href="/apis">API</a></span>
       <span className={scn(active, 'github')}><a href="https://github.com/bingomanatee/looking-glass-engine-3" target="github">Github</a></span>
     </div>

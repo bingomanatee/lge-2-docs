@@ -960,14 +960,15 @@
     "@webassemblyjs/wast-parser" "1.8.5"
     "@xtuc/long" "4.2.2"
 
-"@wonderlandlabs/looking-glass-engine@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@wonderlandlabs/looking-glass-engine/-/looking-glass-engine-3.1.4.tgz#7d8e12edeb8d5a9838ef71c3c7c1efdc20bba291"
-  integrity sha512-7nc5WyBls0+uc0xQkTr7NcxLwRiN13DHS9OwEMSKON+NEHoiRg7svLXOwciNWYntUnEY3KvzY2ZM76UYWMUogw==
+"@wonderlandlabs/looking-glass-engine@latest":
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/@wonderlandlabs/looking-glass-engine/-/looking-glass-engine-3.1.6.tgz#597607b06e72aa6c77eec747025947b27b79a0b6"
+  integrity sha512-6NNx0Oz4Bzw7XIsScd/+0Y8Fms7BB5t1BUonSdKZcKx2fY6oFSVZ8jo5h6oYSXKeuippwgEYkATRA5oWmou3NQ==
   dependencies:
     "@wonderlandlabs/propper" "^3.0.0"
     is "^3.3.0"
-    lodash "^4.17.15"
+    lodash.get "^4.4.2"
+    lodash.isequal "^4.5.0"
     rxjs "^6.5.4"
 
 "@wonderlandlabs/propper@^3.0.0":
@@ -2793,6 +2794,16 @@ locate-path@^5.0.0:
   integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
   dependencies:
     p-locate "^4.1.0"
+
+lodash.get@^4.4.2:
+  version "4.4.2"
+  resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+  integrity sha1-LRd/ZS+jHpObRDjVNBSZ36OCXpk=
+
+lodash.isequal@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
+  integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
 lodash@^4.17.11, lodash@^4.17.13, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.4:
   version "4.17.15"

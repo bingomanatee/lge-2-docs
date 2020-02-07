@@ -68,9 +68,15 @@ function Home() {
             <ul>
               <li> LGE is self-contained: all the views and state values are in a single file
               </li>
-              <li>Actions are properties of a state sandbox, not scattered and difficult to track or enumerate</li>
+              <li>
+                Actions are properties of a state sandbox, that instance can be tested or mutated
+                with factory functions, not scattered and difficult to track or enumerate
+              </li>
               <li>
                 You can define field values and update actions in a single line.
+              </li>
+              <li>
+                All the code is centralized to a single instance;
               </li>
               <li>
                 Asynchronous handling is innate, not a third party addon with more ritual and caveats
@@ -83,7 +89,6 @@ function Home() {
             </List.ItemHead>
             <ul>
               <li>LGE is concise, opinionated and centralized</li>
-              <li>It can be learned and used quickly</li>
               <li>It is easy to write methods that update one or several streams</li>
               <li>Its documentation is under 5,000 pages</li>
             </ul>
@@ -97,11 +102,14 @@ function Home() {
               Unlike Saga
             </List.ItemHead>
             <ul>
-              <li>You can watch individual values being updated. (Saga lets you watch the methods <i>that change a value</i>
-              but it's not the same thing.)</li>
+              <li>You can watch individual values being updated. (Saga lets you watch the methods <i>that change a
+                                                                                                     value</i>
+                  but it's not the same thing.)
+              </li>
               <li>It uses OOP classical property/method metaphors</li>
               <li>Each collection is an independent, self-contained instance.</li>
               <li>It doesn't seperate the methods or properties from the definition of their names.</li>
+              <li>You can use async functions without involved abstraction</li>
             </ul>
           </List.Item>
           <List.Item>

@@ -17,6 +17,10 @@ function Home() {
         <p>
           It is designed to be <b>predictable</b>, <b>Testable</b>, <b>Observable</b> and <b>compact</b>.
         </p>
+        <p>Most importantly not only are state management systems a class, each property they manage is an instance of
+           the same class, giving you control over the notification, type filtering, and the ability to obeserve and
+           trigger
+           off individual property changes.</p>
         <code>
           <pre>{l(`
 import {ValueStream} from '@wonderlandlabs/looking-glass-engine';
@@ -48,6 +52,49 @@ abStream.do.swapAlphaAndBeta();
 `)}
           </pre>
         </code>
+        <h2>Top Features</h2>
+        <ul>
+          <li>
+            <b>Stream based notification:</b>
+            Because RxJS is the underlying notification system, you can use
+            all the power of RxJS to observe, filter or throttle notification to control
+            the flow of information to your system.
+          </li>
+          <li>
+            <b>Composite actions:</b>
+            Methods in LGE can call other methods. And you can throttle notification
+            for a single action to allow changes from multiple actions to broadcast when you
+            want them to.
+          </li>
+          <li>
+            <b>Control over state schema:</b>
+            You can control the acceptable values
+            for a property and catch error messages when bad data is submitted to
+            a property.
+          </li>
+          <li>
+            <b>Observable Properties:</b>
+            You can write hooks to trigger when state properties change,
+            or tell LGE to trigger actions to execute when a property changes.
+          </li>
+          <li>
+            <b>Testable state systems:</b>
+            Because state is a class instance, you can trigger changes and test it
+            without any scaffolding or artifice; testing LGE is like testing any other object instance.
+          </li>
+          <li>
+            <b>Inherent error trapping</b>
+            Errors in actions are streamed through the observation cycle.
+            this makes dynamically reacting to errors more controllable.
+          </li>
+          <li>
+            <b>Ritual free access to global or local state:</b>
+            State objects, once created, can be shared globally or bound to a single view system.
+            Or a blend of both can be used. As they exist apart from the view tree, LGE state can
+            be mixed in and accessed like a library item, <i>or</i> instantiated and connected with a
+            single view, as needed.
+          </li>
+        </ul>
         <p>
           This documentation is for version <code>3.1.x</code> of the looking glass engine package.
           Looking Glass Engine was developed under Rollup and should be safe for most modern browsers,

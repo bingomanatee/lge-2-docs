@@ -689,12 +689,27 @@ test names are now  [ 'midterms' ]
           several. The point of transactional actions is to limit this side effect to a single update.
         </p>
 
-        <h2><code>watch(name: string, onChange: fn, onError:fn, , onDone: fn)</code></h2>
+        <h2><code>watch(name: string, onChange: fn, onError:fn, , onDone: fn): self</code></h2>
         <p>This special subscription focuses on change to a single value;
            onChange receives an object <code>{`{value, prev}`}</code> every time its value is changed.</p>
         <p>
           A variant of this  method, <code>{`watchFlat('name', (value, prev) => {...})`}</code>
            passes two arguments, the current and previous value, for each change.
+        </p>
+
+        <h2><code>emit(name: string, ...values)</code></h2>
+        <p>
+          emits a watchable event
+        </p>
+
+        <h2><code>on(name: string, listener: function|string(method name)) </code></h2>
+        <p>
+          Define a handler to handle an event
+        </p>
+
+        <h2><code>off(name: string, listener: function|string(method name)) </code></h2>
+        <p>
+          Define a handler to handle an event
         </p>
 
         <h2>ValueStream Properties</h2>
