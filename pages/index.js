@@ -55,40 +55,40 @@ abStream.do.swapAlphaAndBeta();
         <h2>Top Features</h2>
         <ul>
           <li>
-            <b>Stream based notification:</b>
+            <b>Stream based notification:</b>{' '}
             Because RxJS is the underlying notification system, you can use
             all the power of RxJS to observe, filter or throttle notification to control
             the flow of information to your system.
           </li>
           <li>
-            <b>Composite actions:</b>
+            <b>Composite actions:</b>{' '}
             Methods in LGE can call other methods. And you can throttle notification
             for a single action to allow changes from multiple actions to broadcast when you
             want them to.
           </li>
           <li>
-            <b>Control over state schema:</b>
+            <b>Control over state schema:</b>{' '}
             You can control the acceptable values
             for a property and catch error messages when bad data is submitted to
             a property.
           </li>
           <li>
-            <b>Observable Properties:</b>
+            <b>Observable Properties:</b>{' '}
             You can write hooks to trigger when state properties change,
             or tell LGE to trigger actions to execute when a property changes.
           </li>
           <li>
-            <b>Testable state systems:</b>
+            <b>Testable state systems:</b>{' '}
             Because state is a class instance, you can trigger changes and test it
             without any scaffolding or artifice; testing LGE is like testing any other object instance.
           </li>
           <li>
-            <b>Inherent error trapping</b>
+            <b>Inherent error trapping:</b>{' '}
             Errors in actions are streamed through the observation cycle.
             this makes dynamically reacting to errors more controllable.
           </li>
           <li>
-            <b>Ritual free access to global or local state:</b>
+            <b>Ritual free access to global or local state:</b>{' '}
             State objects, once created, can be shared globally or bound to a single view system.
             Or a blend of both can be used. As they exist apart from the view tree, LGE state can
             be mixed in and accessed like a library item, <i>or</i> instantiated and connected with a
