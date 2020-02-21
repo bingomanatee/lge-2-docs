@@ -6,8 +6,8 @@ function PageHeader(props) {
   const {active} = props;
   return <header>
     <div id="logo">
-      <ig className="large" src="/static/img/Logo.svg"/>
-      <img className="medium" src="/static/img/Logo-sm.svg"/>
+      <img className="large" src="/static/img/Logo.png"/>
+      <img className="medium" src="/static/img/Logo-sm.png"/>
     </div>
     <div id="header-menu">
       <span className="small"><b>LGE</b></span>
