@@ -23,14 +23,10 @@ function Home() {
           <List.Item>
             <List.ItemHead>Like Redux</List.ItemHead>
             <ul>
-              <li>LGE is functional</li>
+              <li>LGE follows flux patterns</li>
               <li>Its actions mutate state</li>
               <li>Its state is injected into view</li>
-              <li>
-                One or many values can be changed in a single stroke
-              </li>
-              <li>All change is managed through actions
-              </li>
+              <li>All change is managed through actions</li>
             </ul>
           </List.Item>
           <List.Item>
@@ -50,16 +46,6 @@ function Home() {
               <li>because of this you can tell stories by tracking which sub-methods are called</li>
             </ul>
           </List.Item>
-          <List.Item>
-            <List.ItemHead>Like Freactal</List.ItemHead>
-            <ul>
-              <li>A LGE State's structure is fully exposed in its configuration file</li>
-              <li>It has a very small footprint</li>
-              <li>It doesn't rely on a broad library of "helpers"</li>
-              <li>It is promise-friendly</li>
-              <li>It is designed to be approachable, transparent and compact.</li>
-            </ul>
-          </List.Item>
         </List>
 
         <List>
@@ -69,8 +55,11 @@ function Home() {
               <li> LGE is self-contained: all the views and state values are in a single file
               </li>
               <li>
-                Actions are properties of a state sandbox, that instance can be tested or mutated
-                with factory functions, not scattered and difficult to track or enumerate
+                Actions are properties of a state sandbox, not scattered in include files
+              </li>
+              <li>
+                A ValueStream can be tested or mutated with factory functions,
+                not scattered and difficult to track or enumerate
               </li>
               <li>
                 You can define field values and update actions in a single line.
@@ -102,27 +91,15 @@ function Home() {
               Unlike Saga
             </List.ItemHead>
             <ul>
-              <li>You can watch individual values being updated. (Saga lets you watch the methods <i>that change a
-                                                                                                     value</i>
+              <li>You can watch individual values being updated.
+                  (Saga lets you watch the methods
+                <i>that change a value</i>
                   but it's not the same thing.)
               </li>
               <li>It uses OOP classical property/method metaphors</li>
               <li>Each collection is an independent, self-contained instance.</li>
-              <li>It doesn't seperate the methods or properties from the definition of their names.</li>
+              <li>Methods are clear sub-properties of a ValueStream, not detached from their names.</li>
               <li>You can use async functions without involved abstraction</li>
-            </ul>
-          </List.Item>
-          <List.Item>
-            <List.ItemHead>
-              Unlike Freactal
-            </List.ItemHead>
-            <ul>
-              <li>LGE doesn't bind you to any inheritance model of state</li>
-              <li>
-                It doesn't force you to inherit fields from above it in the DOM heirarchy so properties
-                are predictable and localized
-              </li>
-              <li>Its creator still loves it</li>
             </ul>
           </List.Item>
         </List>

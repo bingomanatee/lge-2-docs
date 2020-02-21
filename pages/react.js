@@ -39,15 +39,7 @@ function Home() {
           <pre>
             {l(`
 const userStore = new ValueStream('userStore')
-.method('loadUserFromLocalStorage', (store) => {
-      let userString = localStorage.getItem('user');
-      try {
-        store.do.setUser(JSON.parse(userString));
-      } catch (err) {
-        store.do.clearUserFromLocalStorage();
-      }
-    })
-.method('loadUserFromLocalStorage', (store) => {
+  .method('loadUserFromLocalStorage', (store) => {
       let userString = localStorage.getItem('user');
       try {
         store.do.setUser(JSON.parse(userString));

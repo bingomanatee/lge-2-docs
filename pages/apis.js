@@ -15,7 +15,7 @@ function Home() {
         <h1>
           ValueStream 3.0 API
         </h1>
-
+        <img src="/static/img/valueStream.png" />
         <p>
           ValueStream is an observable object class. It has a few nonstandard "quirks" that exist to skirt the
           referential issues and class property issues that are endemic to JavaScript; namely:

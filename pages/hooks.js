@@ -19,7 +19,7 @@ function Home() {
         a stream upon value change, or to execute a custom function. The value of the change is passed to
         the watch function as an object (<code>{`{value: currentValue, prev: pastValue, name: string}`}</code>).</p>
 
-        <p>>Or, if you call watchFlat, as a series of properties (<code>value, prevValue, name</code>). </p>
+        <p>Or, if you call watchFlat, as a series of properties (<code>value, prevValue, name</code>). </p>
 
         <code>
           <pre>
@@ -77,6 +77,7 @@ stream.set('x', 3);
           </pre>
         </code>
 
+        <p>Watched values are updated every time they are set, synchronously. Even if there is a transactional lock in place from a calling action.</p>
         <h2>Events</h2>
         <p>Events follow the node.js pattern of eventEmitters; a value can be emitted via a named event,
         and a listener can be attached to listen to the event. You can use this to trigger watchable errors, or
@@ -85,8 +86,8 @@ stream.set('x', 3);
         </p>
 
         <p>An event is not related to the data that a ValueStream manages as state, or tied to any of the
-           observables that are concerned with property updates. Like property watchers they can
-        be bound to custom functions or (by name, when passed a string) to methods of the ValueStream.  </p>
+           observables that are concerned with property updates. Like property watchers <code>.on(eventName, target)</code>'s target can
+        be a function or (by name, when passed a string) a method of the ValueStream.</p>
       </article>
     </main>
   </div>

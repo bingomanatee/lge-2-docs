@@ -52,6 +52,22 @@ abStream.do.swapAlphaAndBeta();
 `)}
           </pre>
         </code>
+        <h2>Unlearning Redux</h2>
+        <p>
+          ValueStreams are object instances that broadcast change to listeners. That means they follow Flux patterns,
+        but are objective in nature, not functional. Change broadcasting is synchronous, but a LGE stream's methods can
+          be asynchronous.</p>
+        <p>
+          Because the output of an action(method) is not the trigger for change, you can change a
+          property inside an async function whenever you want and it applies instantly.
+        </p>
+        <p>
+          Because the properties are managed individually, instead of being a generic passed-through item,
+          they can have types/schema, and be monitored for change (watched).
+        </p>
+        <p>
+          The creation of a property also creates a 'set' method, as shown above.
+        </p>
         <h2>Top Features</h2>
         <ul>
           <li>
