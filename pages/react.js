@@ -94,7 +94,7 @@ import React, {Component} from 'react';
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {...userStore.state };
+    this.state = {...userStore.value };
     this.doLogin = this.doLogin.bind(this);
   }
   
@@ -109,8 +109,7 @@ export default class LoginForm extends Component {
   }
   
   doLogin(){
-    const {username, password} = this.state;
-    userStore.do.login(username, password);
+    userStore.do.login(this.store.my.username, this.store.my.password);
   }
   
   render () {
@@ -180,12 +179,12 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this._initFormStore();
-    this.state = {...userStore.state, ...this.formStore.state };
+    this.state = {...userStore.value, ...this.formStore.value };
     this.doLogin = this.doLogin.bind(this);
   }
   
   _initFormStore() {
-    this.formStore = new State({})
+    this.formStore = new ValueStream('login-form-state')
     .addProp('username', '' 'string')
     .addProp('password', '', 'string')
     .addProp('loggingIn',false, 'boolean');
@@ -205,10 +204,9 @@ export default class LoginForm extends Component {
   }
   
   async doLogin(){
-    const {username, password, loggingIn} = this.formStore.state;
     if (!loggingIn) {
       this.formState.do.setLoggingIn(true);
-      await userStore.do.login(username, password);
+      await userStore.do.login(this.formState.my.username, this.formState.my.password);
       this.formState.do.setLoggingIn(false);
     }
   }
@@ -241,15 +239,16 @@ export default class LoginForm extends Component {
 `)}
           </pre>
         </code>
-        <h2>Passing actions in params</h2>
+        <h2>Passing stream properties and Actions to downstream views</h2>
         <p>The pattern of passing actions through parameters in Redux and other systems
         is common; in practice, in LGE, it is actually kind of noisy and unnecessary.
-          Actions of a global store can be accessed directly through importing the store itself -
-           there is no benefit to passing global actions through the view layer.</p>
+          Actions of a stream can be accessed directly from the stream itself.
+           For a global stream. you can import it as a module; for a local stream, you can pass it as a
+        parameter to downstream views. </p>
         <p>
-        Generally it is easier to pass the state itself as a parameter if a downstream
+        Generally it is easier to pass the stream as a parameter if a downstream
         component needs to use local actions. But it is valid and possible to destructure
-        some or all actions of a local store into a subview if you want to.</p>
+        some or all actions of a stream into a subview if you want to.</p>
         <h2>Optimizing Refresh</h2>
         <p>In the examples above, we "dump" all the state from LGE to React.
            This is easy to understand but inefficient. In a working example you will want

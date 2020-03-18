@@ -183,7 +183,7 @@ function Recipes() {
           </pre>
         </code>
         <p>
-          One minor point: transactional locking does <i>not</i> freeze <code>myStore.state</code>; it will
+          One minor point: transactional locking does <i>not</i> freeze <code>myStore.value</code>; it will
           get updated in real time by any actions or property setters. It's only effect (unless an error is thrown)
           is on the stream and subscription updating methods.
         </p>
