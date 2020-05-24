@@ -38,6 +38,7 @@ function Home() {
         <code>
           <pre>
             {l(`
+import {userAPI} from '../utils.userAPI';
 const userStore = new ValueStream('userStore')
   .method('loadUserFromLocalStorage', (store) => {
       let userString = localStorage.getItem('user');
@@ -66,16 +67,18 @@ const userStore = new ValueStream('userStore')
     .method('logout', (store) => {
       store.do.clearUserFromLocalStorage();
     })
-    .method(login, async (store, username, password) {
+    .method(login, async (store) {
       store.do.setLoginError(false);
       try {
-        let user = await tryToLogIn(username, password);
+        let user = await tryToLogIn(store.my.username, store.my.password);
         store.do.setUser(user);
         store.do.saveUserToLocalStorage(user);
       } catch (err) {
         this.setLoginError(err);
       }
     })
+  .property('username', '', 'string')
+  .property('password', '', 'string')
   .property('loginError', null)
   .property('user', storedUser || null);
 `)}
@@ -95,21 +98,33 @@ export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {...userStore.value };
-    this.doLogin = this.doLogin.bind(this);
+    this.setUsername = this.setUsername.bind(this);
+    this.setPassword = this.setPassword.bind(this);
+  }
+  
+  setPassword(e){
+    const {target} = e;
+    // note - the reason we manually set state here is the twitchiness if react input update handling
+    this.setState({password: target.value}, () => {
+    userStore.do.setPassword(username);
+    });
+  }
+  
+  setUsername(e){
+    const {target} = e;
+    this.setState({username: target.value}, () => {
+    userStore.do.setUsername(target.value);
+    });
   }
   
   componentDidMount() {
-    this.sub = userStore.subscribe(({state}) => {
-      this.setState(state);
+    this.sub = userStore.subscribe(us) => {
+      this.setState(us.value);
     });
   }
   
   componentWillUnmount(){
     if (this.sub) this.sub.unsubscribe();
-  }
-  
-  doLogin(){
-    userStore.do.login(this.store.my.username, this.store.my.password);
   }
   
   render () {
@@ -121,16 +136,17 @@ export default class LoginForm extends Component {
         <div className="form-row">
           <label>Username</label>
            <input type="text" value={username}
-            onChange={({target}) => { this.setState({username: target.value})}}/>
+            onChange={this.setUsername} />
         </div>
+        
         <div className="form-row">
           <label>Password</label>
           <input type="password" value={username} 
-          onChange={({target}) => { this.setState({password: target.value})}} />
+          onChange={this.setPassword} />
         </div>
           
          <div className="form-row">
-          <button onClick={this.doLogin}>Log In</button>
+          <button onClick={userStore.do.login}>Log In</button>
           </div>
       </div>
     )

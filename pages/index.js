@@ -15,12 +15,12 @@ function Home() {
           app frameworks. Looking Glass Engine is a combination of the best features of Redux, Freactal and RxjS.
         </p>
         <p>
-          It is designed to be <b>predictable</b>, <b>Testable</b>, <b>Observable</b> and <b>compact</b>.
+          It is designed to
+          be <b>predictable</b>, <b>Testable</b>, <b>Observable</b>, <b>syncronous</b> and <b>compact</b>.
         </p>
         <p>Most importantly not only are state management systems a class, each property they manage is an instance of
-           the same class, giving you control over the notification, type filtering, and the ability to obeserve and
-           trigger
-           off individual property changes.</p>
+           the same class, giving you control over the notification, type filtering, and the ability to observe and
+           trigger off individual property changes.</p>
         <code>
           <pre>{l(`
 import {ValueStream} from '@wonderlandlabs/looking-glass-engine';
@@ -55,7 +55,8 @@ abStream.do.swapAlphaAndBeta();
         <h2>Unlearning Redux</h2>
         <p>
           ValueStreams are object instances that broadcast change to listeners. That means they follow Flux patterns,
-        but are objective in nature, not functional. Change broadcasting is synchronous, but a LGE stream's methods can
+          but are objective in nature, not functional. Change broadcasting is synchronous, but a LGE stream's methods
+          can
           be asynchronous.</p>
         <p>
           Because the output of an action(method) is not the trigger for change, you can change a
@@ -120,6 +121,13 @@ abStream.do.swapAlphaAndBeta();
         </p>
         <p>
           LGE has internal dependencies on RxJS, lodash, and <code>@wonderlandlabs/propper</code>.
+        </p>
+        <hr/>
+        <h2>3.2 beta</h2>
+        <p>
+          Version 3.2 of Looking Glass Engine is in beta now; it is a grounds-up recode with several new features.
+          As there are no breaking changes (?) it is not a full point upgrade, but it has not had the rigorous field
+          testing that 3.1 has so for now it is (or will soon be) available in a completely new module.
         </p>
       </article>
     </main>
