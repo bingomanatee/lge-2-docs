@@ -10,7 +10,7 @@
   "dependencies": {
     "@mdx-js/react": "^1.6.4",
     "@wonderlandlabs/looking-glass-engine": "latest",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "grommet": "^2.13.0",
     "next": "^9.0.5",
     "react": "^16.9.0",
